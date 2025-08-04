@@ -1,6 +1,3 @@
-// Illinois Health Information Exchange Opt-Out Information
-// Last updated: August 2025
-
 window.stateData = window.stateData || {};
 
 window.stateData[''] = {
@@ -11,7 +8,7 @@ window.stateData[''] = {
 		law: "",
 		lawUrl: "",
 		process: "",
-		effectiveDate: "",
+		effectiveDate: "August 4, 2023",
 		contacts: [
 			{
 				name: "",

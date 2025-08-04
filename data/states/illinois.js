@@ -1,6 +1,3 @@
-// Illinois Health Information Exchange Opt-Out Information
-// Last updated: August 2025
-
 window.stateData = window.stateData || {};
 
 window.stateData['il'] = {
@@ -31,7 +28,7 @@ window.stateData['il'] = {
 			"Follow up within 30 days for written confirmation",
 			"Keep copies of all correspondence for your records"
 		],
-		template: "I understand Illinois law grants me the right under 740 ILCS 110/9.6 to opt out of my provider sharing my records via Health Information Exchange networks. This law became effective August 4, 2023, and mandates that HIE participants must allow patients to opt out without coercion or denial of service. Please provide the form and guidance to complete this opt-out for all HIE networks your organization participates in.",
+		template: "",
 		majorProviders: [
 			"northwestern-medicine",
 			"university-of-illinois-health",
@@ -44,8 +41,7 @@ window.stateData['il'] = {
 		],
 		additionalInfo: {
 			emergencyAccess: "Opting out means your information will not be shared through HIE networks, even in emergencies. Consider keeping a personal health summary card.",
-			coverageArea: "Statewide - all healthcare providers in Illinois must comply with this law",
-			exceptions: "Emergency situations may still allow access as required by federal law"
+			exceptions: "Law enforcement, public health authorities, and court orders can still access your health records in certain situations as required by federal law"
 		}
 	}
 };
