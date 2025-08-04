@@ -217,13 +217,13 @@ class ProvidersPage {
 					</div>
 					
 					<div class="github-links">
-						<a href="https://github.com/yourusername/HIEinfo/issues/new?template=provider-request.md" 
+						<a href="https://github.com/Thefonze74065/hie-opt-out/issues/new?template=provider-request.md" 
 						   target="_blank" 
 						   rel="noopener" 
 						   class="github-button">
 							📝 Request Provider Addition
 						</a>
-						<a href="https://github.com/yourusername/HIEinfo" 
+						<a href="https://github.com/Thefonze74065/hie-opt-out" 
 						   target="_blank" 
 						   rel="noopener" 
 						   class="github-link">

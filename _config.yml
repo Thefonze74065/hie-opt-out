@@ -1,8 +1,8 @@
 # HIE Opt-Out Guide - GitHub Pages Configuration
 
-# Theme: Using default GitHub Pages theme (none specified for custom design)
-# Custom domain: Uncomment and modify if you have a custom domain
-# url: https://your-custom-domain.com
+# Site URL for GitHub Pages
+url: "https://thefonze74065.github.io"
+baseurl: "/hie-opt-out"
 
 # Build settings for GitHub Pages
 markdown: kramdown
@@ -35,3 +35,4 @@ social:
   type: "website"
   title: "HIE Opt-Out Guide"
   description: "A comprehensive guide to opting out of Health Information Exchange sharing"
+  url: "https://thefonze74065.github.io/hie-opt-out/"

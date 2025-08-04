@@ -33,6 +33,10 @@ This website provides state-specific guidance and contact information for opting
 - Joint HIE (VA, DOD, Coast Guard, NOAA)
 - Medicare and insurance networks (coming soon)
 
+## Live Website
+
+🌐 **[Visit the HIE Opt-Out Guide](https://thefonze74065.github.io/hie-opt-out/)**
+
 ## How It Works
 
 1. **Select Your State**: Choose from available states to get specific legal information and procedures

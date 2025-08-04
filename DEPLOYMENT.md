@@ -8,6 +8,8 @@
 3. Make it public (required for free GitHub Pages)
 4. Don't initialize with README (we already have one)
 
+**Note: This project uses repository name `hie-opt-out`**
+
 ### 2. Push Your Code
 ```bash
 # Initialize git repository
@@ -36,6 +38,7 @@ git push -u origin main
 
 ### 4. Access Your Website
 - Your website will be available at: `https://YOUR-USERNAME.github.io/YOUR-REPO-NAME`
+- **This site is live at: https://thefonze74065.github.io/hie-opt-out/**
 - It may take a few minutes for the initial deployment
 
 ## Local Development
@@ -71,7 +74,7 @@ Then visit: `http://localhost:8000`
 
 ### Search Console
 1. Verify ownership in Google Search Console
-2. Submit sitemap: `https://your-site.com/sitemap.xml`
+2. Submit sitemap: `https://thefonze74065.github.io/hie-opt-out/sitemap.xml`
 
 ## Troubleshooting
 
