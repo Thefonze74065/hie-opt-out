@@ -6,7 +6,7 @@ window.providerData = window.providerData || [];
 window.providerData.push({
 	id: "northwestern-medicine",
 	name: "Northwestern Medicine",
-	state: "Illinois",
+	states: ["IL"], // Array of two-letter state codes
 	system_type: "Large Academic Health System",
 	locations: [
 		"Chicago, IL",

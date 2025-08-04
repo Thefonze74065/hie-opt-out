@@ -223,6 +223,21 @@ class StatesPage {
 		}
 	}
 
+	// Helper method to get provider name from provider ID
+	getProviderName(providerId) {
+		// Get provider data from the data loader
+		const allProviders = window.hieDataLoader?.getAllProviders ?
+			window.hieDataLoader.getAllProviders() : {};
+
+		const provider = allProviders[providerId];
+		if (provider && provider.name) {
+			return provider.name;
+		}
+
+		// Fallback if provider not found - convert ID to readable name
+		return providerId.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+	}
+
 	displayStateInfo(state) {
 		console.log('Displaying state info for:', state);
 
@@ -236,6 +251,7 @@ class StatesPage {
                 ${hieInfo.contacts.map(contact => `
                     <div class="contact-item" style="margin-bottom: 1rem; padding: 1rem; background: #f9fafb; border-radius: 0.5rem;">
                         <p><strong>${contact.name}</strong></p>
+                        ${contact.address ? `<p><strong>Address:</strong> ${contact.address}</p>` : ''}
                         <p><strong>Phone:</strong> <a href="tel:${contact.phone}">${contact.phone}</a></p>
                         <p><strong>Email:</strong> <a href="mailto:${contact.email}">${contact.email}</a></p>
                         ${contact.website ? `<p><strong>Website:</strong> <a href="${contact.website}" target="_blank">${contact.website}</a></p>` : ''}
@@ -244,12 +260,14 @@ class StatesPage {
                 `).join('')}
             </div>
 
-            <div class="template-section">
-                <h4>What to Say</h4>
-                <div class="template-text" style="background: #f0f9ff; border: 1px solid #0ea5e9; padding: 1.5rem; border-radius: 0.5rem; margin: 1rem 0;">
-                    <p>"${hieInfo.template}"</p>
+            ${hieInfo.template ? `
+                <div class="template-section">
+                    <h4>What to Say</h4>
+                    <div class="template-text" style="background: #f0f9ff; border: 1px solid #0ea5e9; padding: 1.5rem; border-radius: 0.5rem; margin: 1rem 0;">
+                        <p>"${hieInfo.template}"</p>
+                    </div>
                 </div>
-            </div>
+            ` : ''}
 
             <div class="steps-section">
                 <h4>Step-by-Step Process</h4>
@@ -261,7 +279,11 @@ class StatesPage {
             <div class="providers-section">
                 <h4>Major Providers in ${state.name}</h4>
                 <ul class="provider-list" style="columns: 2; column-gap: 2rem;">
-                    ${hieInfo.majorProviders.map(provider => `<li style="margin-bottom: 0.5rem;">${provider}</li>`).join('')}
+                    ${hieInfo.majorProviders.map(providerId => {
+			const providerName = this.getProviderName(providerId);
+			const providerUrl = `providers.html#${providerId}`;
+			return `<li style="margin-bottom: 0.5rem;"><a href="${providerUrl}" style="color: #2563eb; text-decoration: none; font-weight: 500;">${providerName}</a></li>`;
+		}).join('')}
                 </ul>
             </div>
 

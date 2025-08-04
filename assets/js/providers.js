@@ -19,6 +19,9 @@ class ProvidersPage {
 
 			this.setupEventListeners();
 			this.displayAllProviders();
+
+			// Check for URL anchor to auto-select a provider
+			this.handleUrlAnchor();
 		} catch (error) {
 			console.error('Failed to initialize providers page:', error);
 			this.showErrorMessage('Failed to load provider data. Please refresh the page.');
@@ -39,6 +42,47 @@ class ProvidersPage {
 		});
 	}
 
+	handleUrlAnchor() {
+		// Check if there's a hash in the URL (e.g., #duke-health)
+		const hash = window.location.hash.substring(1); // Remove the #
+		if (hash) {
+			// Find the provider with this ID
+			const provider = this.providerData.find(p => p.id === hash);
+			if (provider) {
+				// Auto-scroll to and highlight this provider
+				setTimeout(() => {
+					this.highlightProvider(hash);
+				}, 100);
+			}
+		}
+	}
+
+	highlightProvider(providerId) {
+		const providerCard = document.querySelector(`[data-provider-id="${providerId}"]`);
+		if (providerCard) {
+			// Scroll to the provider card with offset to keep title visible
+			setTimeout(() => {
+				const cardRect = providerCard.getBoundingClientRect();
+				const offsetPosition = window.pageYOffset + cardRect.top - 75; // 75px padding from top
+
+				window.scrollTo({
+					top: offsetPosition,
+					behavior: 'smooth'
+				});
+			}, 100);
+
+			// Add highlight effect
+			providerCard.style.border = '3px solid #3b82f6';
+			providerCard.style.boxShadow = '0 0 0 3px rgba(59, 130, 246, 0.1)';
+
+			// Remove highlight after a few seconds
+			setTimeout(() => {
+				providerCard.style.border = '';
+				providerCard.style.boxShadow = '';
+			}, 3000);
+		}
+	}
+
 	handleProviderSearch(event) {
 		const searchTerm = event.target.value.toLowerCase().trim();
 
@@ -57,7 +101,7 @@ class ProvidersPage {
 			// Search in multiple fields
 			const searchFields = [
 				provider.name,
-				provider.state,
+				...(provider.states || []), // Handle array of states
 				provider.system_type || '',
 				...(provider.locations || []),
 				...(provider.service_areas || []),
@@ -95,9 +139,11 @@ class ProvidersPage {
 
 	createProviderCard(provider) {
 		return `
-            <div class="provider-card">
+            <div class="provider-card" data-provider-id="${provider.id}">
                 <h3>${provider.name}</h3>
-                <div class="state-badge">${provider.state}</div>
+                <div class="state-badges">
+                    ${(provider.states || []).map(state => `<div class="state-badge">${state}</div>`).join('')}
+                </div>
                 
                 ${provider.system_type ? `<p><strong>System Type:</strong> ${provider.system_type}</p>` : ''}
                 

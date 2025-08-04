@@ -56,7 +56,8 @@ class HIEDataLoader {
 	async loadProviderData() {
 		const providerFiles = [
 			'northwestern-medicine.js',
-			'duke-health.js'
+			'duke-health.js',
+			'hca-healthcare.js'
 			// Add more provider files here as they're created
 		];
 
@@ -128,12 +129,23 @@ class HIEDataLoader {
 		return this.providerData;
 	}
 
+	// Get all providers as an object keyed by provider ID
+	getAllProviders() {
+		const providersById = {};
+		this.providerData.forEach(provider => {
+			if (provider.id) {
+				providersById[provider.id] = provider;
+			}
+		});
+		return providersById;
+	}
+
 	// Search providers
 	searchProviders(searchTerm) {
 		const term = searchTerm.toLowerCase();
 		return this.providerData.filter(provider =>
 			provider.name.toLowerCase().includes(term) ||
-			provider.state.toLowerCase().includes(term) ||
+			(provider.states && provider.states.some(state => state.toLowerCase().includes(term))) ||
 			(provider.locations && provider.locations.some(loc =>
 				loc.toLowerCase().includes(term)
 			)) ||

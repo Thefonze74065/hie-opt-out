@@ -33,14 +33,14 @@ window.stateData['il'] = {
 		],
 		template: "I understand Illinois law grants me the right under 740 ILCS 110/9.6 to opt out of my provider sharing my records via Health Information Exchange networks. This law became effective August 4, 2023, and mandates that HIE participants must allow patients to opt out without coercion or denial of service. Please provide the form and guidance to complete this opt-out for all HIE networks your organization participates in.",
 		majorProviders: [
-			"Northwestern Medicine",
-			"University of Illinois Health",
-			"Advocate Health",
-			"Rush University Medical Center",
-			"Loyola Medicine",
-			"NorthShore University HealthSystem",
-			"Blessing Health System",
-			"Anderson Hospital"
+			"northwestern-medicine",
+			"university-of-illinois-health",
+			"advocate-health",
+			"rush-university-medical-center",
+			"loyola-medicine",
+			"northshore-university-healthsystem",
+			"blessing-health-system",
+			"anderson-hospital"
 		],
 		additionalInfo: {
 			emergencyAccess: "Opting out means your information will not be shared through HIE networks, even in emergencies. Consider keeping a personal health summary card.",

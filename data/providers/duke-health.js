@@ -6,7 +6,7 @@ window.providerData = window.providerData || [];
 window.providerData.push({
 	id: "duke-health",
 	name: "Duke Health",
-	state: "North Carolina",
+	states: ["NC"], // Array of two-letter state codes
 	system_type: "Large Academic Health System",
 	locations: [
 		"Durham, NC",
