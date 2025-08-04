@@ -243,8 +243,19 @@ class StatesPage {
 
 		const hieInfo = state.hieOptOut;
 
+		const processColorClass = hieInfo.process.startsWith('Centralized') ? 'centralized' : 'provider-based';
+		const processBgColor = hieInfo.process.startsWith('Centralized') ? '#eff6ff' : '#fef2f2';
+		const processBorderColor = hieInfo.process.startsWith('Centralized') ? '#3b82f6' : '#ef4444';
+		const processTextColor = hieInfo.process.startsWith('Centralized') ? '#1d4ed8' : '#dc2626';
+		const processHeadingColor = hieInfo.process.startsWith('Centralized') ? '#1e40af' : '#b91c1c';
+
 		this.stateInfo.innerHTML = `
             <h3>HIE Opt-Out Information for ${state.name}</h3>
+            
+            <div class="process-section" style="background: ${processBgColor}; border: 1px solid ${processBorderColor}; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+                <h4 style="margin: 0 0 0.5rem 0; color: ${processHeadingColor};">Process Type</h4>
+                <p style="margin: 0; font-weight: 500; color: ${processTextColor};">${hieInfo.process}</p>
+            </div>
             
             <div class="contact-section">
                 <h4>Contact Information</h4>
