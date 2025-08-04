@@ -28,7 +28,7 @@ HIEinfo/
 │   │   ├── main.js        # Homepage functionality
 │   │   └── [page].js      # Page-specific functionality
 │   └── images/            # Image assets
-│       ├── us-map.svg     # Interactive US map
+│       ├── us.svg     # Interactive US map
 │       └── us.svg         # Backup US map
 ├── data/                  # Data files and loader
 │   ├── data-loader.js     # Central data loading utility
@@ -148,7 +148,7 @@ All HTML files use the following asset path conventions:
 3. Test filtering by state association
 
 ### Modifying the Interactive Map
-- The map uses `/assets/images/us-map.svg`
+- The map uses `/assets/images/us.svg`
 - State click handlers are in `/assets/js/states.js`
 - Ensure state IDs in SVG match data file names
 
@@ -163,6 +163,7 @@ All HTML files use the following asset path conventions:
 - Use consistent error handling
 - Maintain separation between data loading and UI logic
 - Test cross-browser compatibility
+- **Wait for user testing before proposing alternative solutions** - don't suggest new approaches until the current fix has been tested and confirmed not working
 
 ## Testing and Validation
 

@@ -1,9 +1,9 @@
 // Duke Health Provider Information
 // Last updated: August 2025
 
-window.HIEProviderData = window.HIEProviderData || [];
+window.providerData = window.providerData || [];
 
-window.HIEProviderData.push({
+window.providerData.push({
 	id: "duke-health",
 	name: "Duke Health",
 	state: "North Carolina",

@@ -1,9 +1,9 @@
 // Northwestern Medicine Provider Information
 // Last updated: August 2025
 
-window.HIEProviderData = window.HIEProviderData || [];
+window.providerData = window.providerData || [];
 
-window.HIEProviderData.push({
+window.providerData.push({
 	id: "northwestern-medicine",
 	name: "Northwestern Medicine",
 	state: "Illinois",

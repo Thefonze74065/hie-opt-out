@@ -139,25 +139,7 @@
     cursor: pointer;
 }
 
-.us-map .state:hover {
-    fill: #3b82f6;
-    stroke: #1e40af;
-    stroke-width: 2;
-}
-
-.us-map .state.available {
-    fill: #10b981;
-}
-
-.us-map .state.available:hover {
-    fill: #059669;
-}
-
-.us-map .state.selected {
-    fill: #1e40af;
-    stroke: #1e3a8a;
-    stroke-width: 3;
-}
+/* Remove old state styling - colors are now handled by JavaScript based on opt-out status */
 
 .state-legend {
     display: flex;
@@ -184,6 +166,7 @@
 .legend-gray { background-color: #e5e7eb; }
 .legend-green { background-color: #10b981; }
 .legend-blue { background-color: #3b82f6; }
+.legend-red { background-color: #ef4444; }
 
 /* State selector */
 .state-selector {
@@ -407,7 +390,7 @@
 
 /* State map tooltip */
 .state-tooltip {
-    position: absolute;
+    position: fixed;
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
     padding: 0.5rem;
@@ -417,6 +400,7 @@
     pointer-events: none;
     z-index: 1000;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transform: translateX(-50%);
 }
 
 /* Map state interactions */

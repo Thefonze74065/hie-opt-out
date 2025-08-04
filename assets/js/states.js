@@ -8,32 +8,32 @@ class StatesPage {
 		this.svgDoc = null;
 		this.selectedState = null;
 		this.tooltip = null;
-		
+
 		console.log('StatesPage constructor - elements found:', {
 			stateDropdown: !!this.stateDropdown,
 			stateInfo: !!this.stateInfo,
 			usMapObject: !!this.usMapObject
 		});
-		
+
 		this.init();
 	}
 
 	async init() {
 		try {
 			console.log('Init starting, hieDataLoader:', window.hieDataLoader);
-			
+
 			// Load data first
 			await window.hieDataLoader.loadAllData();
 			console.log('Data loaded, available states:', Object.keys(window.hieDataLoader.getAllStates()));
-			
+
 			this.setupEventListeners();
 			// Remove populateStateDropdown call - data loader handles this
-			
+
 			// Wait for SVG to load, then setup map interactivity
 			this.usMapObject.addEventListener('load', () => {
 				this.setupMapInteractivity();
 			});
-			
+
 			// If SVG is already loaded
 			if (this.usMapObject.contentDocument) {
 				this.setupMapInteractivity();
@@ -50,6 +50,34 @@ class StatesPage {
 		});
 	}
 
+	getStateColor(optOutStatus) {
+		switch (optOutStatus) {
+			case 'opt-out':
+				return '#10b981'; // Green for opt-out available
+			case 'opt-in':
+				return '#3b82f6'; // Blue for opt-in only
+			case 'no-option':
+				return '#ef4444'; // Red for no option
+			case 'unknown':
+			default:
+				return '#e5e7eb'; // Gray for unknown/no data
+		}
+	}
+
+	getStateHoverColor(optOutStatus) {
+		switch (optOutStatus) {
+			case 'opt-out':
+				return '#059669'; // Darker green
+			case 'opt-in':
+				return '#2563eb'; // Darker blue
+			case 'no-option':
+				return '#dc2626'; // Darker red
+			case 'unknown':
+			default:
+				return '#d1d5db'; // Darker gray
+		}
+	}
+
 	setupMapInteractivity() {
 		try {
 			// Get the SVG document
@@ -60,46 +88,51 @@ class StatesPage {
 			}
 
 			// Get available states from data
-			const availableStates = window.hieDataLoader.getAllStates ? 
-				Object.keys(window.hieDataLoader.getAllStates()) : ['il', 'nc'];
+			const stateData = window.hieDataLoader.getAllStates ?
+				window.hieDataLoader.getAllStates() : {};
 
 			// Style all state paths
 			const statePaths = this.svgDoc.querySelectorAll('path[data-id]');
 			statePaths.forEach(path => {
 				const stateCode = path.getAttribute('data-id').toLowerCase();
 				const stateName = path.getAttribute('data-name');
-				
-				// Set initial styling
-				if (availableStates.includes(stateCode)) {
-					path.style.fill = '#10b981'; // Green for available states
-					path.style.cursor = 'pointer';
-					path.classList.add('available');
-				} else {
-					path.style.fill = '#e5e7eb'; // Gray for unavailable states
-					path.style.cursor = 'default';
+
+				// Get state data to determine color
+				const state = stateData[stateCode];
+				const optOutStatus = state ? state.optOutStatus : 'unknown';
+
+				// Set initial styling based on opt-out status
+				const stateColor = this.getStateColor(optOutStatus);
+				const hoverColor = this.getStateHoverColor(optOutStatus);
+
+				path.style.fill = stateColor;
+				path.style.cursor = state ? 'pointer' : 'default';
+
+				if (state) {
+					path.classList.add('clickable');
 				}
-				
+
 				// Set stroke and hover effects
 				path.style.stroke = '#ffffff';
 				path.style.strokeWidth = '0.5';
-				
+
 				// Add event listeners
 				path.addEventListener('click', (e) => {
-					if (availableStates.includes(stateCode)) {
+					if (state) {
 						this.handleMapStateClick(stateCode);
 					}
 				});
 
 				path.addEventListener('mouseenter', (e) => {
-					if (availableStates.includes(stateCode)) {
-						path.style.fill = '#059669'; // Darker green on hover
+					if (state) {
+						path.style.fill = hoverColor;
 					}
 					this.showTooltip(e, stateName);
 				});
 
 				path.addEventListener('mouseleave', (e) => {
-					if (availableStates.includes(stateCode) && stateCode !== this.selectedState) {
-						path.style.fill = '#10b981'; // Back to normal green
+					if (state) {
+						path.style.fill = stateColor; // Back to original color
 					}
 					this.hideTooltip();
 				});
@@ -107,7 +140,7 @@ class StatesPage {
 
 			// Create tooltip
 			this.createTooltip();
-			
+
 			console.log('Map interactivity setup complete');
 		} catch (error) {
 			console.error('Error setting up map interactivity:', error);
@@ -128,8 +161,19 @@ class StatesPage {
 		if (this.tooltip) {
 			this.tooltip.textContent = stateName;
 			this.tooltip.style.display = 'block';
-			this.tooltip.style.left = event.pageX + 10 + 'px';
-			this.tooltip.style.top = event.pageY - 10 + 'px';
+			this.tooltip.style.position = 'fixed';
+
+			// Get the SVG object's position on the page
+			const svgRect = this.usMapObject.getBoundingClientRect();
+
+			// Calculate mouse position relative to the main page
+			// The event coordinates are relative to the SVG document
+			const pageX = svgRect.left + event.offsetX;
+			const pageY = svgRect.top + event.offsetY;
+
+			// Position tooltip above the mouse
+			this.tooltip.style.left = pageX + 'px';
+			this.tooltip.style.top = (pageY - 40) + 'px';
 		}
 	}
 
@@ -142,42 +186,10 @@ class StatesPage {
 	handleMapStateClick(stateCode) {
 		// Update dropdown to match clicked state
 		this.stateDropdown.value = stateCode;
-		
+
 		// Trigger the same behavior as dropdown selection
 		const event = { target: { value: stateCode } };
 		this.handleStateSelection(event);
-		
-		// Highlight the clicked state
-		this.highlightMapState(stateCode);
-	}
-
-	highlightMapState(stateCode) {
-		if (!this.svgDoc) return;
-
-		// Remove previous highlights
-		const allStates = this.svgDoc.querySelectorAll('path[data-id]');
-		allStates.forEach(state => {
-			const currentStateCode = state.getAttribute('data-id').toLowerCase();
-			const availableStates = window.hieDataLoader.getAllStates ? 
-				Object.keys(window.hieDataLoader.getAllStates()) : ['il', 'nc'];
-			
-			if (availableStates.includes(currentStateCode)) {
-				state.style.fill = '#10b981'; // Green for available states
-			} else {
-				state.style.fill = '#e5e7eb'; // Gray for unavailable states
-			}
-		});
-		
-		// Highlight selected state if provided
-		if (stateCode) {
-			const selectedState = this.svgDoc.querySelector(`path[data-id="${stateCode.toUpperCase()}"]`);
-			if (selectedState) {
-				selectedState.style.fill = '#3b82f6'; // Blue for selected state
-				this.selectedState = stateCode;
-			}
-		} else {
-			this.selectedState = null;
-		}
 	}
 
 	handleStateSelection(event) {
@@ -188,35 +200,40 @@ class StatesPage {
 		if (selectedState && window.hieDataLoader.isLoaded()) {
 			const stateData = window.hieDataLoader.getStateData(selectedState);
 			console.log('State data found:', !!stateData);
-			
+
 			if (stateData) {
 				this.displayStateInfo(stateData);
 				this.stateInfo.style.display = 'block';
-				
-				// Highlight the selected state on the map
-				this.highlightMapState(selectedState);
 
-				// Smooth scroll to the state info
-				this.stateInfo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+				// Scroll to the populated state information, with some padding to keep header visible
+				setTimeout(() => {
+					const stateInfoRect = this.stateInfo.getBoundingClientRect();
+					const offsetPosition = window.pageYOffset + stateInfoRect.top - 75; // 75px padding from top
+
+					window.scrollTo({
+						top: offsetPosition,
+						behavior: 'smooth'
+					});
+				}, 100);
 			} else {
 				console.log('No state data found for:', selectedState);
 			}
 		} else {
 			this.stateInfo.style.display = 'none';
-			// Clear map highlights when no state is selected
-			this.highlightMapState(null);
 		}
 	}
 
 	displayStateInfo(state) {
 		console.log('Displaying state info for:', state);
-		
+
+		const hieInfo = state.hieOptOut;
+
 		this.stateInfo.innerHTML = `
             <h3>HIE Opt-Out Information for ${state.name}</h3>
             
             <div class="contact-section">
                 <h4>Contact Information</h4>
-                ${state.contacts.map(contact => `
+                ${hieInfo.contacts.map(contact => `
                     <div class="contact-item" style="margin-bottom: 1rem; padding: 1rem; background: #f9fafb; border-radius: 0.5rem;">
                         <p><strong>${contact.name}</strong></p>
                         <p><strong>Phone:</strong> <a href="tel:${contact.phone}">${contact.phone}</a></p>
@@ -230,30 +247,30 @@ class StatesPage {
             <div class="template-section">
                 <h4>What to Say</h4>
                 <div class="template-text" style="background: #f0f9ff; border: 1px solid #0ea5e9; padding: 1.5rem; border-radius: 0.5rem; margin: 1rem 0;">
-                    <p>"${state.template}"</p>
+                    <p>"${hieInfo.template}"</p>
                 </div>
             </div>
 
             <div class="steps-section">
                 <h4>Step-by-Step Process</h4>
                 <ol style="padding-left: 1.5rem;">
-                    ${state.steps.map(step => `<li style="margin-bottom: 0.5rem;">${step}</li>`).join('')}
+                    ${hieInfo.steps.map(step => `<li style="margin-bottom: 0.5rem;">${step}</li>`).join('')}
                 </ol>
             </div>
 
             <div class="providers-section">
                 <h4>Major Providers in ${state.name}</h4>
                 <ul class="provider-list" style="columns: 2; column-gap: 2rem;">
-                    ${state.majorProviders.map(provider => `<li style="margin-bottom: 0.5rem;">${provider}</li>`).join('')}
+                    ${hieInfo.majorProviders.map(provider => `<li style="margin-bottom: 0.5rem;">${provider}</li>`).join('')}
                 </ul>
             </div>
 
-            ${state.additionalInfo ? `
+            ${hieInfo.additionalInfo ? `
                 <div class="additional-info">
                     <h4>Additional Information</h4>
-                    ${state.additionalInfo.emergencyAccess ? `<p><strong>Emergency Access:</strong> ${state.additionalInfo.emergencyAccess}</p>` : ''}
-                    ${state.additionalInfo.coverageArea ? `<p><strong>Coverage:</strong> ${state.additionalInfo.coverageArea}</p>` : ''}
-                    ${state.additionalInfo.exceptions ? `<p><strong>Exceptions:</strong> ${state.additionalInfo.exceptions}</p>` : ''}
+                    ${hieInfo.additionalInfo.emergencyAccess ? `<p><strong>Emergency Access:</strong> ${hieInfo.additionalInfo.emergencyAccess}</p>` : ''}
+                    ${hieInfo.additionalInfo.coverageArea ? `<p><strong>Coverage:</strong> ${hieInfo.additionalInfo.coverageArea}</p>` : ''}
+                    ${hieInfo.additionalInfo.exceptions ? `<p><strong>Exceptions:</strong> ${hieInfo.additionalInfo.exceptions}</p>` : ''}
                 </div>
             ` : ''}
 

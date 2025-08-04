@@ -13,8 +13,8 @@ class HIEDataLoader {
 	async loadAllData() {
 		try {
 			// Initialize global objects
-			window.HIEStateData = {};
-			window.HIEProviderData = [];
+			window.stateData = {};
+			window.providerData = [];
 
 			// Load state data files
 			await this.loadStateData();
@@ -87,10 +87,10 @@ class HIEDataLoader {
 
 	processLoadedData() {
 		// Copy state data from global object
-		this.stateData = { ...window.HIEStateData };
+		this.stateData = { ...window.stateData };
 
 		// Copy provider data from global array
-		this.providerData = [...window.HIEProviderData];
+		this.providerData = [...window.providerData];
 
 		// Add state abbreviations to dropdown if not already present
 		this.populateStateDropdown();

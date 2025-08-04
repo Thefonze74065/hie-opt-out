@@ -75,7 +75,7 @@ This website provides state-specific guidance and contact information for opting
 │   │   ├── main.js        # Homepage functionality
 │   │   └── [page].js      # Page-specific functionality
 │   └── images/            # Image assets
-│       ├── us-map.svg     # Interactive US map
+│       ├── us.svg     # Interactive US map
 │       └── us.svg         # Backup US map
 ├── data/                  # Data files and loader
 │   ├── data-loader.js     # Central data loading utility
