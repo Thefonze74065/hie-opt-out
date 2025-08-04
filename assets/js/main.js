@@ -2,11 +2,8 @@
 let stateData = {};
 let providerData = [];
 
-// DOM elements
-const stateDropdown = document.getElementById('state-dropdown');
-const stateInfo = document.getElementById('state-info');
-const providerSearch = document.getElementById('provider-search');
-const providerResults = document.getElementById('provider-results');
+// DOM elements (will be accessed when needed)
+let stateDropdown, stateInfo, providerSearch, providerResults;
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function () {
@@ -16,6 +13,17 @@ document.addEventListener('DOMContentLoaded', function () {
 // Initialize app and load data
 async function initializeApp() {
 	try {
+		// Clear any existing error messages
+		clearErrorMessages();
+
+		// Check if data loader is available
+		if (!window.hieDataLoader) {
+			console.warn('Data loader not available, will use fallback behavior');
+			setupEventListeners();
+			setupSmoothScrolling();
+			return;
+		}
+
 		// Load all data files
 		await window.hieDataLoader.loadAllData();
 
@@ -33,7 +41,9 @@ async function initializeApp() {
 		console.log('App initialized successfully');
 	} catch (error) {
 		console.error('Failed to initialize app:', error);
-		showErrorMessage('Failed to load data. Please refresh the page.');
+		// Never show error messages on homepage - just continue with basic functionality
+		setupEventListeners();
+		setupSmoothScrolling();
 	}
 }
 
@@ -58,13 +68,34 @@ function showErrorMessage(message) {
 	document.body.insertBefore(errorDiv, document.body.firstChild);
 }
 
+function clearErrorMessages() {
+	const errorMessages = document.querySelectorAll('.error-message');
+	errorMessages.forEach(msg => msg.remove());
+}
+
 function setupEventListeners() {
-	stateDropdown.addEventListener('change', handleStateSelection);
-	providerSearch.addEventListener('input', handleProviderSearch);
+	// Get DOM elements when setting up listeners
+	stateDropdown = document.getElementById('state-dropdown');
+	stateInfo = document.getElementById('state-info');
+	providerSearch = document.getElementById('provider-search');
+	providerResults = document.getElementById('provider-results');
+
+	// Only add listeners if elements exist (they won't exist on homepage)
+	if (stateDropdown) {
+		stateDropdown.addEventListener('change', handleStateSelection);
+	}
+	if (providerSearch) {
+		providerSearch.addEventListener('input', handleProviderSearch);
+	}
 }
 
 function handleStateSelection(event) {
 	const selectedState = event.target.value;
+
+	// Safety check - make sure stateInfo element exists
+	if (!stateInfo) {
+		return;
+	}
 
 	if (selectedState && stateData[selectedState]) {
 		displayStateInfo(stateData[selectedState]);
@@ -161,10 +192,18 @@ function handleProviderSearch(event) {
 }
 
 function displayAllProviders() {
-	displayProviders(providerData);
+	// Only display providers if we're on a page that has the provider results element
+	if (providerResults) {
+		displayProviders(providerData);
+	}
 }
 
 function displayProviders(providers) {
+	// Safety check - only proceed if provider results element exists
+	if (!providerResults) {
+		return;
+	}
+
 	if (providers.length === 0) {
 		providerResults.innerHTML = '<p class="no-results">No providers found. Try a different search term.</p>';
 		return;
@@ -289,18 +328,22 @@ function setupSmoothScrolling() {
 function addStateData(stateCode, stateInfo) {
 	stateData[stateCode] = stateInfo;
 
-	// Add option to dropdown if not already present
-	const option = document.createElement('option');
-	option.value = stateCode;
-	option.textContent = stateInfo.name;
-	stateDropdown.appendChild(option);
+	// Add option to dropdown if not already present and dropdown exists
+	const stateDropdown = document.getElementById('state-dropdown');
+	if (stateDropdown) {
+		const option = document.createElement('option');
+		option.value = stateCode;
+		option.textContent = stateInfo.name;
+		stateDropdown.appendChild(option);
+	}
 }
 
 function addProviderData(providerInfo) {
 	providerData.push(providerInfo);
 
-	// Refresh the display if we're showing all providers
-	if (providerSearch.value === '') {
+	// Refresh the display if we're showing all providers and element exists
+	const providerSearch = document.getElementById('provider-search');
+	if (providerSearch && providerSearch.value === '') {
 		displayAllProviders();
 	}
 }
@@ -313,19 +356,3 @@ window.HIEOptOut = {
 	providerData
 };
 
-// Analytics placeholder (replace with actual analytics if needed)
-function trackEvent(eventName, eventData) {
-	console.log('Event:', eventName, eventData);
-	// Replace with actual analytics implementation
-}
-
-// Track user interactions
-stateDropdown.addEventListener('change', () => {
-	trackEvent('state_selected', { state: stateDropdown.value });
-});
-
-providerSearch.addEventListener('input', () => {
-	if (providerSearch.value.length >= 2) {
-		trackEvent('provider_searched', { term: providerSearch.value });
-	}
-});

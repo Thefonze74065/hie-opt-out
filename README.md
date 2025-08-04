@@ -8,10 +8,12 @@ This website provides state-specific guidance and contact information for opting
 
 ## Features
 
-- **State-Specific Guidance**: Interactive state selector with detailed opt-out procedures
-- **Provider Database**: Searchable database of major healthcare networks and privacy contact information
+- **Interactive State Map**: Click on any state to see HIE opt-out information
+- **State-Specific Guidance**: Detailed opt-out procedures for each state
+- **Provider Database**: Searchable database of major healthcare networks
 - **Federal HIE Information**: Guidance for Veterans Affairs and Joint HIE opt-out processes
-- **Step-by-Step Instructions**: Clear, actionable steps for each state and provider
+- **Insurance & Prescription Privacy**: Information about pharmacy and insurance data sharing
+- **Step-by-Step Instructions**: Clear, actionable guidance
 - **Mobile-Responsive Design**: Works on all devices
 - **Accessibility-First**: Built with WCAG 2.1 AA compliance in mind
 
@@ -31,7 +33,8 @@ This website provides state-specific guidance and contact information for opting
 
 ### Federal Programs
 - Joint HIE (VA, DOD, Coast Guard, NOAA)
-- Medicare and insurance networks (coming soon)
+- Medicare and insurance networks
+- Prescription drug monitoring programs
 
 ## Live Website
 
@@ -39,10 +42,11 @@ This website provides state-specific guidance and contact information for opting
 
 ## How It Works
 
-1. **Select Your State**: Choose from available states to get specific legal information and procedures
-2. **Find Your Provider**: Search for your healthcare network to get privacy officer contact details
-3. **Follow the Steps**: Use our step-by-step guidance to complete the opt-out process
-4. **Use Our Templates**: Copy our tested language for contacting privacy officers
+1. **Select Your State**: Use the interactive map or dropdown to choose your state
+2. **Find Your Provider**: Search for your healthcare network to get privacy contact details
+3. **Explore Federal Options**: Learn about VA, insurance, and prescription privacy options
+4. **Follow the Steps**: Use our step-by-step guidance to complete the opt-out process
+5. **Use Our Templates**: Access tested language for contacting privacy officers
 
 ## Technical Details
 
@@ -51,23 +55,40 @@ This website provides state-specific guidance and contact information for opting
 - CSS3 (with CSS Grid and Flexbox)
 - Vanilla JavaScript
 - Google Fonts (Inter)
+- Interactive SVG map
 - Modular data structure with dynamic loading
+- GitHub Pages with Jekyll
 
 ### Project Structure
 ```
-├── index.html              # Main page
-├── styles.css              # All styling
-├── script.js               # Main application logic
-├── data/
-│   ├── data-loader.js      # Dynamic data loading
-│   ├── states/             # State-specific files
+├── *.html                  # Main pages (index, states, providers, etc.)
+├── _config.yml             # Jekyll configuration
+├── package.json            # Node.js metadata and dependencies
+├── README.md               # Project documentation
+├── assets/                 # Static assets (organized by type)
+│   ├── css/               # Stylesheets
+│   │   ├── main.css       # Homepage styles
+│   │   ├── shared.css     # Common styles across all pages
+│   │   └── [page].css     # Page-specific styles
+│   ├── js/                # JavaScript files
+│   │   ├── navigation.js  # Common navigation and footer
+│   │   ├── main.js        # Homepage functionality
+│   │   └── [page].js      # Page-specific functionality
+│   └── images/            # Image assets
+│       ├── us-map.svg     # Interactive US map
+│       └── us.svg         # Backup US map
+├── data/                  # Data files and loader
+│   ├── data-loader.js     # Central data loading utility
+│   ├── README.md          # Data structure documentation
+│   ├── states/            # State-specific data files
 │   │   ├── illinois.js
 │   │   └── north-carolina.js
-│   └── providers/          # Provider-specific files
-│       ├── northwestern-medicine.js
-│       └── duke-health.js
-├── _config.yml             # GitHub Pages configuration
-└── README.md
+│   └── providers/         # Provider-specific data files
+│       ├── duke-health.js
+│       └── northwestern-medicine.js
+└── docs/                  # Documentation
+    ├── DATA_TEMPLATES.md  # Data structure templates
+    └── DEPLOYMENT.md      # Deployment instructions
 ```
 
 ### Data Architecture
@@ -88,46 +109,41 @@ The website uses a modular data structure where each state and major healthcare 
 
 ### For Developers
 1. Clone this repository
-2. Open `index.html` in your browser
-3. No build process required!
+2. Start a local server: `python -m http.server 8000`
+3. Open `http://localhost:8000` in your browser
+4. No build process required!
 
 ## Contributing
 
 We welcome contributions to expand coverage to more states and providers. Please:
 
 1. Fork the repository
-2. Add new state or provider data to `script.js`
-3. Test your changes
+2. Add new state or provider data files following our data structure
+3. Test your changes locally
 4. Submit a pull request
+
+See `docs/DATA_TEMPLATES.md` for detailed data structure documentation.
 
 ### Adding a New State
 
 Create a new file in `data/states/state-name.js`:
 
 ```javascript
-window.HIEStateData = window.HIEStateData || {};
-
-window.HIEStateData.statecode = {
-    name: "State Name",
-    allowsOptOut: true,
-    law: "State Law Reference",
-    lawUrl: "https://link-to-law.gov",
-    process: "Description of process",
-    contacts: [
-        {
-            name: "Contact Name",
-            phone: "Phone Number",
-            email: "Email Address",
-            type: "Contact Type",
-            notes: "Additional info"
-        }
-    ],
-    steps: [
-        "Step 1: First action",
-        "Step 2: Second action"
-    ],
-    template: "Template message to use",
-    majorProviders: ["Provider 1", "Provider 2"]
+window.stateData = window.stateData || {};
+window.stateData['state-name'] = {
+    name: 'State Name',
+    hieOptOut: {
+        available: true,
+        process: 'Description of opt-out process',
+        links: [
+            {
+                text: 'Link description',
+                url: 'https://example.com',
+                type: 'form|information|contact'
+            }
+        ],
+        additionalInfo: 'Any additional notes'
+    }
 };
 ```
 
@@ -135,31 +151,31 @@ Then add the filename to the `stateFiles` array in `data/data-loader.js`.
 
 ### Adding a New Provider
 
-Create a new file in `data/providers/provider-name.js`:
+Create a new file in `data/providers/provider-slug.js`:
 
 ```javascript
-window.HIEProviderData = window.HIEProviderData || [];
-
-window.HIEProviderData.push({
-    name: "Provider Name",
-    state: "State",
-    privacy_contact: {
-        phone: "Phone Number",
-        department: "Department Name",
-        email: "Email Address"
-    },
-    hie_networks: [
-        {
-            name: "Network Name",
-            type: "Network Type",
-            opt_out_available: true
-        }
-    ],
-    notes: "Additional information"
-});
+window.providerData = window.providerData || {};
+window.providerData['provider-slug'] = {
+    name: 'Provider Name',
+    states: ['state1', 'state2'],
+    hieOptOut: {
+        available: true,
+        process: 'Description of opt-out process',
+        links: [
+            {
+                text: 'Link description',
+                url: 'https://example.com',
+                type: 'form|information|contact'
+            }
+        ],
+        additionalInfo: 'Any additional notes'
+    }
+};
 ```
 
 Then add the filename to the `providerFiles` array in `data/data-loader.js`.
+
+For detailed data structure documentation, see `docs/DATA_TEMPLATES.md`.
 
 ## Legal Disclaimer
 
@@ -179,9 +195,12 @@ For questions or suggestions about the website, please create an issue on GitHub
 
 ## Roadmap
 
+- [x] Interactive state map with SVG
+- [x] Modular data structure
+- [x] Federal program guidance
+- [x] Insurance and prescription privacy information
 - [ ] Add all 50 states
 - [ ] Expand provider database
-- [ ] Add federal program details
 - [ ] Create downloadable templates
 - [ ] Add multi-language support
 - [ ] Mobile app version

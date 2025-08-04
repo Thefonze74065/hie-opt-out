@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>State HIE Opt-Out Guide - HIE Opt-Out Guide</title>
     <meta name="description" content="Find state-specific information for opting out of Health Information Exchange sharing.">
-    <link rel="stylesheet" href="shared.css">
-    <link rel="stylesheet" href="states.css">
+    <link rel="stylesheet" href="assets/css/shared.css">
+    <link rel="stylesheet" href="assets/css/states.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -26,8 +26,33 @@
     <main class="main-content">
         <section class="content-section">
             <div class="container">
+                <div class="interactive-map-container">
+                    <h2 class="section-title">Click Your State on the Map</h2>
+                    <div class="us-map-wrapper">
+                        <object data="assets/images/us.svg" type="image/svg+xml" id="us-map-object" class="us-map">
+                            <!-- Fallback content if SVG doesn't load -->
+                            <p>Interactive map not available</p>
+                        </object>
+                        <div class="state-legend">
+                            <div class="legend-item">
+                                <div class="legend-color legend-green"></div>
+                                <span>Information Available</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color legend-gray"></div>
+                                <span>General Guidance</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color legend-blue"></div>
+                                <span>Selected</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="map-instruction">Click on any state to see HIE opt-out information, or use the dropdown below.</p>
+                </div>
+
                 <div class="state-selector">
-                    <label for="state-dropdown">Select Your State:</label>
+                    <label for="state-dropdown">Or Select from Dropdown:</label>
                     <select id="state-dropdown" class="state-dropdown">
                         <option value="">Choose a state...</option>
                         <option value="il">Illinois</option>
@@ -114,8 +139,8 @@
         <!-- Footer will be populated by navigation.js -->
     </footer>
 
-    <script src="navigation.js"></script>
+    <script src="assets/js/navigation.js"></script>
     <script src="data/data-loader.js"></script>
-    <script src="states.js"></script>
+    <script src="assets/js/states.js"></script>
 </body>
 </html>

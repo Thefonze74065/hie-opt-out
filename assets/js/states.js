@@ -1,0 +1,292 @@
+// States page functionality
+
+class StatesPage {
+	constructor() {
+		this.stateDropdown = document.getElementById('state-dropdown');
+		this.stateInfo = document.getElementById('state-info');
+		this.usMapObject = document.getElementById('us-map-object');
+		this.svgDoc = null;
+		this.selectedState = null;
+		this.tooltip = null;
+		
+		console.log('StatesPage constructor - elements found:', {
+			stateDropdown: !!this.stateDropdown,
+			stateInfo: !!this.stateInfo,
+			usMapObject: !!this.usMapObject
+		});
+		
+		this.init();
+	}
+
+	async init() {
+		try {
+			console.log('Init starting, hieDataLoader:', window.hieDataLoader);
+			
+			// Load data first
+			await window.hieDataLoader.loadAllData();
+			console.log('Data loaded, available states:', Object.keys(window.hieDataLoader.getAllStates()));
+			
+			this.setupEventListeners();
+			// Remove populateStateDropdown call - data loader handles this
+			
+			// Wait for SVG to load, then setup map interactivity
+			this.usMapObject.addEventListener('load', () => {
+				this.setupMapInteractivity();
+			});
+			
+			// If SVG is already loaded
+			if (this.usMapObject.contentDocument) {
+				this.setupMapInteractivity();
+			}
+		} catch (error) {
+			console.error('Failed to initialize states page:', error);
+			this.showErrorMessage('Failed to load state data. Please refresh the page.');
+		}
+	}
+
+	setupEventListeners() {
+		this.stateDropdown.addEventListener('change', (event) => {
+			this.handleStateSelection(event);
+		});
+	}
+
+	setupMapInteractivity() {
+		try {
+			// Get the SVG document
+			this.svgDoc = this.usMapObject.contentDocument;
+			if (!this.svgDoc) {
+				console.log('SVG document not accessible');
+				return;
+			}
+
+			// Get available states from data
+			const availableStates = window.hieDataLoader.getAllStates ? 
+				Object.keys(window.hieDataLoader.getAllStates()) : ['il', 'nc'];
+
+			// Style all state paths
+			const statePaths = this.svgDoc.querySelectorAll('path[data-id]');
+			statePaths.forEach(path => {
+				const stateCode = path.getAttribute('data-id').toLowerCase();
+				const stateName = path.getAttribute('data-name');
+				
+				// Set initial styling
+				if (availableStates.includes(stateCode)) {
+					path.style.fill = '#10b981'; // Green for available states
+					path.style.cursor = 'pointer';
+					path.classList.add('available');
+				} else {
+					path.style.fill = '#e5e7eb'; // Gray for unavailable states
+					path.style.cursor = 'default';
+				}
+				
+				// Set stroke and hover effects
+				path.style.stroke = '#ffffff';
+				path.style.strokeWidth = '0.5';
+				
+				// Add event listeners
+				path.addEventListener('click', (e) => {
+					if (availableStates.includes(stateCode)) {
+						this.handleMapStateClick(stateCode);
+					}
+				});
+
+				path.addEventListener('mouseenter', (e) => {
+					if (availableStates.includes(stateCode)) {
+						path.style.fill = '#059669'; // Darker green on hover
+					}
+					this.showTooltip(e, stateName);
+				});
+
+				path.addEventListener('mouseleave', (e) => {
+					if (availableStates.includes(stateCode) && stateCode !== this.selectedState) {
+						path.style.fill = '#10b981'; // Back to normal green
+					}
+					this.hideTooltip();
+				});
+			});
+
+			// Create tooltip
+			this.createTooltip();
+			
+			console.log('Map interactivity setup complete');
+		} catch (error) {
+			console.error('Error setting up map interactivity:', error);
+		}
+	}
+
+	createTooltip() {
+		// Create tooltip if it doesn't exist
+		if (!this.tooltip) {
+			this.tooltip = document.createElement('div');
+			this.tooltip.className = 'state-tooltip';
+			this.tooltip.style.display = 'none';
+			document.body.appendChild(this.tooltip);
+		}
+	}
+
+	showTooltip(event, stateName) {
+		if (this.tooltip) {
+			this.tooltip.textContent = stateName;
+			this.tooltip.style.display = 'block';
+			this.tooltip.style.left = event.pageX + 10 + 'px';
+			this.tooltip.style.top = event.pageY - 10 + 'px';
+		}
+	}
+
+	hideTooltip() {
+		if (this.tooltip) {
+			this.tooltip.style.display = 'none';
+		}
+	}
+
+	handleMapStateClick(stateCode) {
+		// Update dropdown to match clicked state
+		this.stateDropdown.value = stateCode;
+		
+		// Trigger the same behavior as dropdown selection
+		const event = { target: { value: stateCode } };
+		this.handleStateSelection(event);
+		
+		// Highlight the clicked state
+		this.highlightMapState(stateCode);
+	}
+
+	highlightMapState(stateCode) {
+		if (!this.svgDoc) return;
+
+		// Remove previous highlights
+		const allStates = this.svgDoc.querySelectorAll('path[data-id]');
+		allStates.forEach(state => {
+			const currentStateCode = state.getAttribute('data-id').toLowerCase();
+			const availableStates = window.hieDataLoader.getAllStates ? 
+				Object.keys(window.hieDataLoader.getAllStates()) : ['il', 'nc'];
+			
+			if (availableStates.includes(currentStateCode)) {
+				state.style.fill = '#10b981'; // Green for available states
+			} else {
+				state.style.fill = '#e5e7eb'; // Gray for unavailable states
+			}
+		});
+		
+		// Highlight selected state if provided
+		if (stateCode) {
+			const selectedState = this.svgDoc.querySelector(`path[data-id="${stateCode.toUpperCase()}"]`);
+			if (selectedState) {
+				selectedState.style.fill = '#3b82f6'; // Blue for selected state
+				this.selectedState = stateCode;
+			}
+		} else {
+			this.selectedState = null;
+		}
+	}
+
+	handleStateSelection(event) {
+		const selectedState = event.target.value;
+		console.log('State selection:', selectedState);
+		console.log('Data loader loaded:', window.hieDataLoader.isLoaded());
+
+		if (selectedState && window.hieDataLoader.isLoaded()) {
+			const stateData = window.hieDataLoader.getStateData(selectedState);
+			console.log('State data found:', !!stateData);
+			
+			if (stateData) {
+				this.displayStateInfo(stateData);
+				this.stateInfo.style.display = 'block';
+				
+				// Highlight the selected state on the map
+				this.highlightMapState(selectedState);
+
+				// Smooth scroll to the state info
+				this.stateInfo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			} else {
+				console.log('No state data found for:', selectedState);
+			}
+		} else {
+			this.stateInfo.style.display = 'none';
+			// Clear map highlights when no state is selected
+			this.highlightMapState(null);
+		}
+	}
+
+	displayStateInfo(state) {
+		console.log('Displaying state info for:', state);
+		
+		this.stateInfo.innerHTML = `
+            <h3>HIE Opt-Out Information for ${state.name}</h3>
+            
+            <div class="contact-section">
+                <h4>Contact Information</h4>
+                ${state.contacts.map(contact => `
+                    <div class="contact-item" style="margin-bottom: 1rem; padding: 1rem; background: #f9fafb; border-radius: 0.5rem;">
+                        <p><strong>${contact.name}</strong></p>
+                        <p><strong>Phone:</strong> <a href="tel:${contact.phone}">${contact.phone}</a></p>
+                        <p><strong>Email:</strong> <a href="mailto:${contact.email}">${contact.email}</a></p>
+                        ${contact.website ? `<p><strong>Website:</strong> <a href="${contact.website}" target="_blank">${contact.website}</a></p>` : ''}
+                        ${contact.notes ? `<p><em>${contact.notes}</em></p>` : ''}
+                    </div>
+                `).join('')}
+            </div>
+
+            <div class="template-section">
+                <h4>What to Say</h4>
+                <div class="template-text" style="background: #f0f9ff; border: 1px solid #0ea5e9; padding: 1.5rem; border-radius: 0.5rem; margin: 1rem 0;">
+                    <p>"${state.template}"</p>
+                </div>
+            </div>
+
+            <div class="steps-section">
+                <h4>Step-by-Step Process</h4>
+                <ol style="padding-left: 1.5rem;">
+                    ${state.steps.map(step => `<li style="margin-bottom: 0.5rem;">${step}</li>`).join('')}
+                </ol>
+            </div>
+
+            <div class="providers-section">
+                <h4>Major Providers in ${state.name}</h4>
+                <ul class="provider-list" style="columns: 2; column-gap: 2rem;">
+                    ${state.majorProviders.map(provider => `<li style="margin-bottom: 0.5rem;">${provider}</li>`).join('')}
+                </ul>
+            </div>
+
+            ${state.additionalInfo ? `
+                <div class="additional-info">
+                    <h4>Additional Information</h4>
+                    ${state.additionalInfo.emergencyAccess ? `<p><strong>Emergency Access:</strong> ${state.additionalInfo.emergencyAccess}</p>` : ''}
+                    ${state.additionalInfo.coverageArea ? `<p><strong>Coverage:</strong> ${state.additionalInfo.coverageArea}</p>` : ''}
+                    ${state.additionalInfo.exceptions ? `<p><strong>Exceptions:</strong> ${state.additionalInfo.exceptions}</p>` : ''}
+                </div>
+            ` : ''}
+
+            <div class="next-steps" style="background: #fef3c7; border: 1px solid #f59e0b; padding: 1.5rem; border-radius: 0.5rem; margin-top: 2rem;">
+                <h4 style="margin: 0 0 1rem 0; color: #92400e;">Next Steps</h4>
+                <p style="margin: 0 0 1rem 0; color: #92400e;">Now that you know your state's process, find your specific healthcare provider's contact information:</p>
+                <a href="providers.html" class="btn btn-primary">Find Your Provider</a>
+            </div>
+        `;
+	}
+
+	showErrorMessage(message) {
+		const errorDiv = document.createElement('div');
+		errorDiv.className = 'error-message';
+		errorDiv.style.cssText = `
+            background: #fee2e2;
+            border: 1px solid #fecaca;
+            color: #dc2626;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin: 1rem;
+            text-align: center;
+        `;
+		errorDiv.textContent = message;
+
+		const container = document.querySelector('.container');
+		if (container) {
+			container.insertBefore(errorDiv, container.firstChild);
+		}
+	}
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', function () {
+	new StatesPage();
+});

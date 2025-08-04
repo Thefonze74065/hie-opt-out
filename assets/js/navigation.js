@@ -31,6 +31,8 @@ class Navigation {
                     <li><a href="about.html" data-page="about">About</a></li>
                     <li><a href="states.html" data-page="states">States</a></li>
                     <li><a href="providers.html" data-page="providers">Providers</a></li>
+                    <li><a href="prescriptions.html" data-page="prescriptions">Prescriptions</a></li>
+                    <li><a href="insurance.html" data-page="insurance">Insurance</a></li>
                     <li><a href="federal.html" data-page="federal">Federal</a></li>
                     <li><a href="faq.html" data-page="faq">FAQ</a></li>
                     <li><a href="resources.html" data-page="resources">Resources</a></li>
