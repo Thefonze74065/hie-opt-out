@@ -1,52 +1,56 @@
-// Florida Health Information Exchange Opt-Out Information
+// Texas Health Information Exchange Opt-Out Information
 // Last updated: August 2025
 
 window.stateData = window.stateData || {};
-
-window.stateData['fl'] = {
-  name: "Florida",
-  optOutStatus: "opt-in", // Based on patient must explicitly authorize; default is not shared
+window.stateData['tx'] = {
+  name: "Texas",
+  optOutStatus: "opt-in", // Patient must explicitly consent at each provider/HIE
   hieOptOut: {
     available: true,
-    law: "Florida statutes and DOH regulations (no central statute requiring opt‑out)",
-    lawUrl: "https://www.florida-hie.net/",
-    process: "Provider‑based or local Health Exchange–network opt‑out; written consent required; notarized signature often required",
-    effectiveDate: "Ongoing as of 2025",
+    law: "No statewide statute; governed by local/regional HIE policy and HIPAA",
+    lawUrl: "https://thsa.org/",
+    process: "Provider- or system-based opt-in authorization; individual HIEs support revocation/opt-out",
+    effectiveDate: "Varies by HIE; policies current as of early 2025",
     contacts: [
       {
-        name: "Florida Health Information Exchange (state)",
-        phone: "1‑888‑810‑1078",
-        email: "flhie_info@ainq.com",
-        website: "https://www.florida-hie.net/",
-        type: "State HIE office",
-        notes: "General patient questions; HIE does not administer opt‑out centrally"
+        name: "HealthConnect Texas (state-tier HIE)",
+        phone: "832-564-2599",
+        email: "info@healthconnecttx.org",
+        website: "https://healthconnecttx.org/",
+        type: "Regional/state-level HIE operator",
+        notes: "Participating providers ask for consent and process opt-out at local level"
+      },
+      {
+        name: "Texas Children’s Hospital Privacy Office",
+        phone: "832-824-2091",
+        email: "",
+        website: "https://www.texaschildrens.org/",
+        type: "Hospital-specific HIE opt-out",
+        notes: "Uses its own HIE opt-out request form (revocation)"
       }
     ],
     steps: [
-      "Contact your participating provider or health plan directly",
-      "Request the HIE opt‑out (or revoke consent) form",
-      "Complete form in writing with notarized signature (per local/provider requirements)",
-      "Submit the form to provider privacy office (mail/fax/etc.)",
-      "Allow 5–7 business days for processing confirmation",
-      "If needed, opt back in by submitting revocation form"
+      "At check-in or treatment, providers ask if you consent to HIE sharing",
+      "If consenting, sign provider’s HIE authorization (opt-in)",
+      "To revoke or opt-out, contact provider’s privacy office",
+      "Complete revocation/opt-out form if provided (may require signature)",
+      "Allow 3–5 business days for processing",
+      "You can opt back in anytime through provider"
     ],
-    template: "I do not consent to sharing my health information via Health Information Exchange or associated networks. Please provide any required form and instructions to complete this opt‑out under Florida HIE policies.",
+    template: "I do not consent to sharing my health information via any Health Information Exchange operated by Texas healthcare organizations. Please process my revocation and confirm completion.",
     majorProviders: [
-      "adventhealth-florida",
-      "baptist-health-florida",
-      "morton-plant-mease-health",
-      "jackson-health-system",
-      "mayo-clinic-florida",
-      "tenet-healthcare-florida",
-      "ascension-florida",
-      "lee-health",
-      "nemours-children-florida"
+      "HealthConnect Texas (state-tier network)",
+      "Greater Houston Healthconnect (GHH)",
+      "C3HIE (Central, West Texas)",
+      "PHIX (Paso del Norte HIE)",
+      "Rio Grande Valley HIE (RGVHIE)",
+      "Texas Health Resources systems (e.g. Baylor, Texas Health)",
+      "Texas Children’s Hospital"
     ],
     additionalInfo: {
-      emergencyAccess: "In life‑threatening emergencies, providers may access records even if opted out, per federal/state legal exceptions",
-      coverageArea: "Statewide – all participating providers part of Florida HIE or regional/local exchanges",
-      exceptions: "Opt‑out affects only HIE sharing; other sharing methods (fax, phone, direct download) remain in provider’s control"
+      emergencyAccess: "Since information is not shared without consent, HIE data will not be available even in emergencies.",
+      coverageArea: "Regional HIEs vary by area; no automatic state-wide default exchange mechanism.",
+      exceptions: "Opt-in/opt-out only applies to participation in electronic exchange; fax, patient records, provider-to-provider sharing still permitted."
     }
   }
 };
-

@@ -4,12 +4,12 @@
 window.stateData = window.stateData || {};
 window.stateData['mt'] = {
   name: "Montana",
-  optOutStatus: "opt‑in", // No automatic inclusion; patients must consent to participate in BSCC
+  optOutStatus: "opt-in", // No automatic inclusion; patients must consent to participate in BSCC
   hieOptOut: {
     available: false,
-    law: "No Montana statute mandates patient opt‑out rights; participation governed by provider consent",
+    law: "No Montana statute mandates patient opt-out rights; participation governed by provider consent",
     lawUrl: "https://www.mtbscc.org/optout",
-    process: "Big Sky Care Connect (BSCC) requires individual consent; patients must request sharing be enabled (opt‑in)",
+    process: "Big Sky Care Connect (BSCC) requires individual consent; patients must request sharing be enabled (opt-in)",
     effectiveDate: "BSCC operational statewide since 2018",
     contacts: [
       {
