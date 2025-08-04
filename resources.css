@@ -1,0 +1,557 @@
+/* Resources page specific styles */
+
+/* Quick Reference Section */
+.quick-reference {
+    margin: 2rem 0 3rem 0;
+}
+
+.reference-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.reference-card {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border: 1px solid #cbd5e1;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.reference-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-color: #3b82f6;
+}
+
+.reference-card h3 {
+    color: #1f2937;
+    margin: 0 0 0.75rem 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.reference-card p {
+    color: #6b7280;
+    margin: 0 0 1rem 0;
+    line-height: 1.5;
+}
+
+.reference-link {
+    display: inline-block;
+    background: #3b82f6;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.reference-link:hover {
+    background: #2563eb;
+}
+
+/* Document Templates Section */
+.document-templates {
+    margin: 3rem 0;
+    padding: 2rem 0;
+    border-top: 1px solid #e5e7eb;
+}
+
+.section-description {
+    color: #6b7280;
+    font-size: 1.125rem;
+    margin: 1rem 0 2rem 0;
+    line-height: 1.6;
+}
+
+.template-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.template-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.template-card h3 {
+    color: #1f2937;
+    margin: 0 0 0.75rem 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.template-card > p {
+    color: #6b7280;
+    margin: 0 0 1.5rem 0;
+    line-height: 1.6;
+}
+
+.template-content {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin: 1rem 0;
+}
+
+.template-content h4 {
+    color: #374151;
+    margin: 0 0 1rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.letter-template,
+.form-template {
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    padding: 1.5rem;
+    font-family: 'Times New Roman', serif;
+    line-height: 1.6;
+    color: #374151;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.letter-template p,
+.form-template p {
+    margin: 0.75rem 0;
+}
+
+.letter-template ul,
+.form-template ul {
+    margin: 0.5rem 0;
+    padding-left: 1.5rem;
+}
+
+.letter-template li,
+.form-template li {
+    margin: 0.25rem 0;
+}
+
+.copy-template-btn {
+    background: #059669;
+    color: #ffffff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.2s ease;
+}
+
+.copy-template-btn:hover {
+    background: #047857;
+}
+
+.copy-template-btn:active {
+    transform: translateY(1px);
+}
+
+/* Legal Resources Section */
+.legal-resources {
+    margin: 3rem 0;
+    padding: 2rem 0;
+    border-top: 1px solid #e5e7eb;
+}
+
+.legal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.legal-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.legal-card h3 {
+    color: #1f2937;
+    margin: 0 0 0.75rem 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.legal-card > p {
+    color: #6b7280;
+    margin: 0 0 1rem 0;
+    line-height: 1.5;
+}
+
+.rights-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.rights-list li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: #374151;
+    line-height: 1.4;
+}
+
+.rights-list li::before {
+    content: "✓";
+    color: #059669;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+.resource-links {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.resource-links a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.25rem 0;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+}
+
+.resource-links a:hover {
+    border-bottom-color: #2563eb;
+}
+
+/* Technical Resources Section */
+.technical-resources {
+    margin: 3rem 0;
+    padding: 2rem 0;
+    border-top: 1px solid #e5e7eb;
+}
+
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.tech-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.tech-card h3 {
+    color: #1f2937;
+    margin: 0 0 1rem 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.tech-content h4 {
+    color: #374151;
+    margin: 1rem 0 0.5rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.tech-content h4:first-child {
+    margin-top: 0;
+}
+
+.tech-content ul {
+    margin: 0.5rem 0 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.tech-content li {
+    margin: 0.25rem 0;
+    line-height: 1.4;
+    color: #374151;
+}
+
+.tech-content strong {
+    color: #1f2937;
+}
+
+/* Helpful Tools Section */
+.helpful-tools {
+    margin: 3rem 0;
+    padding: 2rem 0;
+    border-top: 1px solid #e5e7eb;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.tool-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.tool-card h3 {
+    color: #1f2937;
+    margin: 0 0 1rem 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.checklist h4 {
+    color: #374151;
+    margin: 0 0 1rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    margin: 0.75rem 0;
+    cursor: pointer;
+    line-height: 1.4;
+    color: #374151;
+}
+
+.checkbox-item input[type="checkbox"] {
+    margin-right: 0.75rem;
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.questions-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.questions-list li {
+    padding: 0.75rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: #374151;
+    line-height: 1.5;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.questions-list li::before {
+    content: "?";
+    background: #3b82f6;
+    color: #ffffff;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 0.75rem;
+}
+
+.tips-content h4 {
+    color: #374151;
+    margin: 1rem 0 0.5rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.tips-content h4:first-child {
+    margin-top: 0;
+}
+
+.tips-content ul {
+    margin: 0.5rem 0 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.tips-content li {
+    margin: 0.25rem 0;
+    line-height: 1.4;
+    color: #374151;
+}
+
+/* External Resources Section */
+.external-resources {
+    margin: 3rem 0;
+    padding: 2rem 0;
+    border-top: 1px solid #e5e7eb;
+}
+
+.external-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.external-category {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.external-category h3 {
+    color: #1f2937;
+    margin: 0 0 1rem 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    text-align: center;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.external-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.external-links li {
+    margin: 0.75rem 0;
+}
+
+.external-links a {
+    color: #2563eb;
+    text-decoration: none;
+    line-height: 1.4;
+    display: block;
+    padding: 0.25rem 0;
+    transition: color 0.2s ease;
+}
+
+.external-links a:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+}
+
+/* Disclaimer Section */
+.disclaimer-section {
+    margin: 3rem 0 2rem 0;
+    padding: 2rem 0;
+    border-top: 2px solid #e5e7eb;
+}
+
+.disclaimer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.disclaimer-card {
+    background: linear-gradient(135deg, #fef3cd 0%, #fde68a 100%);
+    border: 1px solid #f59e0b;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.1);
+}
+
+.disclaimer-card h3 {
+    color: #92400e;
+    margin: 0 0 0.75rem 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.disclaimer-card p {
+    color: #92400e;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .reference-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .template-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .legal-grid,
+    .tech-grid,
+    .tools-grid,
+    .external-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .template-card,
+    .legal-card,
+    .tech-card,
+    .tool-card,
+    .external-category {
+        padding: 1rem;
+    }
+    
+    .letter-template,
+    .form-template {
+        padding: 1rem;
+        font-size: 0.875rem;
+    }
+    
+    .disclaimer-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .reference-card {
+        padding: 1rem;
+    }
+    
+    .template-content {
+        padding: 1rem;
+    }
+    
+    .letter-template,
+    .form-template {
+        max-height: 300px;
+    }
+    
+    .checkbox-item {
+        font-size: 0.875rem;
+    }
+    
+    .questions-list li {
+        padding-left: 2rem;
+        font-size: 0.875rem;
+    }
+    
+    .questions-list li::before {
+        top: 0.875rem;
+    }
+}

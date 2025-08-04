@@ -1,0 +1,37 @@
+# HIE Opt-Out Guide - GitHub Pages Configuration
+
+# Theme: Using default GitHub Pages theme (none specified for custom design)
+# Custom domain: Uncomment and modify if you have a custom domain
+# url: https://your-custom-domain.com
+
+# Build settings for GitHub Pages
+markdown: kramdown
+highlighter: rouge
+
+# Plugins
+plugins:
+  - jekyll-sitemap
+  - jekyll-feed
+
+# Exclude files from the build
+exclude:
+  - node_modules/
+  - package.json
+  - package-lock.json
+  - README.md
+  - .gitignore
+  - .github/
+
+# Site metadata
+title: "HIE Opt-Out Guide"
+description: "Protect your health information privacy - Learn how to opt out of Health Information Exchange sharing"
+author: "HIE Opt-Out Guide Contributors"
+
+# Google Analytics (uncomment and add your GA tracking ID if desired)
+# google_analytics: UA-XXXXXXXX-X
+
+# Social metadata for better sharing
+social:
+  type: "website"
+  title: "HIE Opt-Out Guide"
+  description: "A comprehensive guide to opting out of Health Information Exchange sharing"

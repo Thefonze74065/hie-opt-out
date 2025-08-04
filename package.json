@@ -1,0 +1,31 @@
+{
+  "name": "hie-opt-out-guide",
+  "version": "1.0.0",
+  "description": "A comprehensive website to help people opt out of Health Information Exchange (HIE) sharing and protect their medical privacy rights.",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "serve": "python -m http.server 8000",
+    "deploy": "echo \"Deploy to GitHub Pages by pushing to main branch\"",
+    "test": "echo \"No tests specified\""
+  },
+  "keywords": [
+    "health",
+    "privacy",
+    "HIE",
+    "medical-records",
+    "opt-out",
+    "HIPAA",
+    "healthcare"
+  ],
+  "author": "HIE Opt-Out Guide Contributors",
+  "license": "MIT",
+  "homepage": "https://your-username.github.io/hie-opt-out-guide",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/hie-opt-out-guide.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/hie-opt-out-guide/issues"
+  }
+}

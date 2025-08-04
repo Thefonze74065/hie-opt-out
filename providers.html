@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare Provider Directory - HIE Opt-Out Guide</title>
+    <meta name="description" content="Find contact information for privacy officers at major healthcare networks and providers.">
+    <link rel="stylesheet" href="shared.css">
+    <link rel="stylesheet" href="providers.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="nav">
+        <!-- Navigation will be populated by navigation.js -->
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1 class="page-title">Healthcare Provider Directory</h1>
+            <p class="page-subtitle">Find contact information for privacy officers at major healthcare networks and providers</p>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="content-section">
+            <div class="container">
+                <div class="search-section">
+                    <div class="search-container">
+                        <label for="provider-search" class="search-label">Search for your healthcare provider:</label>
+                        <input type="text" id="provider-search" placeholder="Enter provider name, location, or state..." class="search-input">
+                        <div class="search-tips">
+                            <p><strong>Search tips:</strong> Try "Northwestern", "Duke Health", "Chicago", or your state name</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="provider-results" class="provider-grid">
+                    <!-- Provider information will be populated here -->
+                </div>
+
+                <div id="no-results" class="no-results-message" style="display: none;">
+                    <div class="card">
+                        <h3>Provider Not Listed?</h3>
+                        <p>If you don't see your healthcare provider in our directory, here's what you can do:</p>
+                        <ol>
+                            <li>Call your provider's main number and ask for the "Privacy Officer" or "HIPAA Privacy Officer"</li>
+                            <li>Ask specifically about "Health Information Exchange opt-out procedures"</li>
+                            <li>Mention Epic Care Everywhere, CareQuality, or other HIE networks by name</li>
+                            <li>Request written confirmation of your opt-out status</li>
+                        </ol>
+                        <div class="contact-template">
+                            <h4>What to Say:</h4>
+                            <p class="template-text">"I would like to opt out of all Health Information Exchange sharing. Can you please provide me with the forms and procedures to opt out of Epic Care Everywhere, CareQuality, and any other HIE networks you participate in?"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <h2 class="section-title">Understanding HIE Networks</h2>
+                <div class="grid-2">
+                    <div class="card">
+                        <h3>Epic Care Everywhere</h3>
+                        <p>The largest healthcare data sharing network, connecting Epic EHR systems nationwide.</p>
+                        <ul>
+                            <li><strong>Coverage:</strong> 300+ health systems</li>
+                            <li><strong>Patients:</strong> 280+ million records</li>
+                            <li><strong>Opt-out:</strong> Contact your provider's Privacy Officer</li>
+                        </ul>
+                        <p><em>Most large hospital systems use Epic and participate in Care Everywhere.</em></p>
+                    </div>
+                    <div class="card">
+                        <h3>CareQuality</h3>
+                        <p>A national interoperability framework enabling secure health information exchange.</p>
+                        <ul>
+                            <li><strong>Coverage:</strong> 600+ organizations</li>
+                            <li><strong>Patients:</strong> 200+ million records</li>
+                            <li><strong>Opt-out:</strong> Provider-specific procedures</li>
+                        </ul>
+                        <p><em>Works across different EHR systems (Epic, Cerner, Allscripts, etc.).</em></p>
+                    </div>
+                    <div class="card">
+                        <h3>CommonWell Health Alliance</h3>
+                        <p>A not-for-profit alliance focused on health data interoperability.</p>
+                        <ul>
+                            <li><strong>Coverage:</strong> 15,000+ provider sites</li>
+                            <li><strong>Patients:</strong> 130+ million records</li>
+                            <li><strong>Opt-out:</strong> Contact participating providers</li>
+                        </ul>
+                        <p><em>Often used by Cerner and other non-Epic systems.</em></p>
+                    </div>
+                    <div class="card">
+                        <h3>State HIE Networks</h3>
+                        <p>Government-operated health information exchanges at the state level.</p>
+                        <ul>
+                            <li><strong>Examples:</strong> NC HealthConnex, SHIN-NY, CalHIE</li>
+                            <li><strong>Coverage:</strong> Varies by state</li>
+                            <li><strong>Opt-out:</strong> State-specific procedures</li>
+                        </ul>
+                        <p><em>Check our <a href="states.html">State Guide</a> for specific procedures.</em></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <h2 class="section-title">Provider Categories</h2>
+                <div class="grid-3">
+                    <div class="card">
+                        <h3>Large Health Systems</h3>
+                        <p>Major hospital networks and academic medical centers typically participate in multiple HIE networks.</p>
+                        <ul>
+                            <li>Northwestern Medicine</li>
+                            <li>Duke Health</li>
+                            <li>Mayo Clinic</li>
+                            <li>Kaiser Permanente</li>
+                            <li>Cleveland Clinic</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Regional Networks</h3>
+                        <p>Mid-size healthcare systems serving specific geographic regions.</p>
+                        <ul>
+                            <li>Advocate Health</li>
+                            <li>Atrium Health</li>
+                            <li>Intermountain Healthcare</li>
+                            <li>Geisinger Health</li>
+                            <li>Ochsner Health</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Specialty Providers</h3>
+                        <p>Specialized care providers that may or may not participate in HIE networks.</p>
+                        <ul>
+                            <li>Mental health centers</li>
+                            <li>Urgent care chains</li>
+                            <li>Imaging centers</li>
+                            <li>Surgery centers</li>
+                            <li>Specialty clinics</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-title">Need State-Specific Information?</h2>
+                    <p style="font-size: 1.125rem; margin-bottom: 2rem; color: #64748b;">Each state has different laws and procedures for HIE opt-out.</p>
+                    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                        <a href="states.html" class="btn btn-primary">Find Your State</a>
+                        <a href="faq.html" class="btn btn-secondary">Common Questions</a>
+                        <a href="federal.html" class="btn btn-secondary">Federal Programs</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <!-- Footer will be populated by navigation.js -->
+    </footer>
+
+    <script src="navigation.js"></script>
+    <script src="data/data-loader.js"></script>
+    <script src="providers.js"></script>
+</body>
+</html>

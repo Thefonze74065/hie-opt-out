@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>State HIE Opt-Out Guide - HIE Opt-Out Guide</title>
+    <meta name="description" content="Find state-specific information for opting out of Health Information Exchange sharing.">
+    <link rel="stylesheet" href="shared.css">
+    <link rel="stylesheet" href="states.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="nav">
+        <!-- Navigation will be populated by navigation.js -->
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1 class="page-title">State-Specific Opt-Out Guide</h1>
+            <p class="page-subtitle">Select your state to find specific contact information and procedures for opting out of your state's HIE</p>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="content-section">
+            <div class="container">
+                <div class="state-selector">
+                    <label for="state-dropdown">Select Your State:</label>
+                    <select id="state-dropdown" class="state-dropdown">
+                        <option value="">Choose a state...</option>
+                        <option value="il">Illinois</option>
+                        <option value="nc">North Carolina</option>
+                        <!-- More states will be added -->
+                    </select>
+                </div>
+
+                <div id="state-info" class="state-info" style="display: none;">
+                    <!-- State-specific information will be populated here -->
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <h2 class="section-title">Don't See Your State?</h2>
+                <div class="card" style="max-width: 800px; margin: 0 auto;">
+                    <h3>General Guidance for All States</h3>
+                    <p>Even if your state isn't listed above, you may still have opt-out rights through federal laws and provider policies:</p>
+                    
+                    <h4 style="margin-top: 2rem; margin-bottom: 1rem;">Steps to Try:</h4>
+                    <ol style="padding-left: 1.5rem; margin-bottom: 2rem;">
+                        <li>Contact your healthcare provider's Privacy Officer (listed on HIPAA notices)</li>
+                        <li>Ask specifically about "Health Information Exchange opt-out procedures"</li>
+                        <li>Mention Epic Care Everywhere, CareQuality, or other HIE networks by name</li>
+                        <li>Request written confirmation of any opt-out process</li>
+                        <li>Follow up if you don't receive a response within 30 days</li>
+                    </ol>
+
+                    <div style="background: #ecfdf5; border: 1px solid #d1fae5; padding: 1.5rem; border-radius: 0.5rem; margin-top: 2rem;">
+                        <p><strong>Help us expand:</strong> If you successfully opt out in a state not listed here, please consider sharing your experience to help others in your state.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <h2 class="section-title">Understanding State vs. Provider Opt-Outs</h2>
+                <div class="grid-2">
+                    <div class="card">
+                        <h3>State-Level HIE</h3>
+                        <p>Many states operate their own health information exchanges:</p>
+                        <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                            <li><strong>North Carolina:</strong> NC HealthConnex</li>
+                            <li><strong>New York:</strong> SHIN-NY (Statewide HIE)</li>
+                            <li><strong>California:</strong> Various regional HIEs</li>
+                            <li><strong>Texas:</strong> Texas HIE Cooperative</li>
+                        </ul>
+                        <p style="margin-top: 1rem;">These require separate opt-out processes from provider networks.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Provider-Level HIE</h3>
+                        <p>Healthcare providers also participate in national networks:</p>
+                        <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                            <li><strong>Epic Care Everywhere:</strong> Connects Epic EHR systems</li>
+                            <li><strong>CareQuality:</strong> Nationwide interoperability framework</li>
+                            <li><strong>CommonWell:</strong> Health data sharing alliance</li>
+                            <li><strong>eHealth Exchange:</strong> Federal and private sector HIE</li>
+                        </ul>
+                        <p style="margin-top: 1rem;">Contact your provider's Privacy Officer to opt out of these.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-title">Need More Help?</h2>
+                    <p style="font-size: 1.125rem; margin-bottom: 2rem; color: #64748b;">Check out our other resources for additional guidance.</p>
+                    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                        <a href="providers.html" class="btn btn-primary">Find Your Provider</a>
+                        <a href="faq.html" class="btn btn-secondary">Common Questions</a>
+                        <a href="federal.html" class="btn btn-secondary">Federal Programs</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <!-- Footer will be populated by navigation.js -->
+    </footer>
+
+    <script src="navigation.js"></script>
+    <script src="data/data-loader.js"></script>
+    <script src="states.js"></script>
+</body>
+</html>

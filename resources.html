@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources & Tools | HIE Information</title>
+    <meta name="description" content="Helpful resources, tools, and information for understanding and managing health information exchange opt-out processes.">
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="shared.css">
+    <link rel="stylesheet" href="resources.css">
+</head>
+<body>
+    <nav class="nav">
+        <!-- Navigation will be populated by navigation.js -->
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1 class="page-title">Resources & Tools</h1>
+            <p class="page-subtitle">Comprehensive resources, tools, and information to help you understand your privacy rights and navigate health information exchange opt-out processes effectively.</p>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="content-section">
+            <div class="container">
+
+        <!-- Quick Reference Section -->
+        <section class="quick-reference">
+            <h2>Quick Reference Guide</h2>
+            
+            <div class="reference-grid">
+                <div class="reference-card">
+                    <h3>🏥 Find Your State</h3>
+                    <p>Get state-specific HIE opt-out information and procedures.</p>
+                    <a href="states.html" class="reference-link">View State Guide</a>
+                </div>
+                
+                <div class="reference-card">
+                    <h3>🏢 Find Your Provider</h3>
+                    <p>Search for healthcare provider-specific opt-out processes.</p>
+                    <a href="providers.html" class="reference-link">Search Providers</a>
+                </div>
+                
+                <div class="reference-card">
+                    <h3>🇺🇸 Federal Systems</h3>
+                    <p>Learn about federal HIE networks (VA, DoD, IHS).</p>
+                    <a href="federal.html" class="reference-link">Federal Information</a>
+                </div>
+                
+                <div class="reference-card">
+                    <h3>❓ Common Questions</h3>
+                    <p>Find answers to frequently asked questions about HIE opt-out.</p>
+                    <a href="faq.html" class="reference-link">View FAQ</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Document Templates -->
+        <section class="document-templates">
+            <h2>Document Templates & Forms</h2>
+            <p class="section-description">
+                Use these templates to help you communicate your opt-out preferences to healthcare providers.
+            </p>
+            
+            <div class="template-grid">
+                <div class="template-card">
+                    <h3>HIE Opt-Out Request Letter</h3>
+                    <p>A formal letter template for requesting to opt out of health information exchange sharing.</p>
+                    <div class="template-content">
+                        <h4>Sample Letter:</h4>
+                        <div class="letter-template">
+                            <p><strong>[Your Name]</strong><br>
+                            <strong>[Your Address]</strong><br>
+                            <strong>[City, State, ZIP Code]</strong><br>
+                            <strong>[Your Phone Number]</strong><br>
+                            <strong>[Your Email Address]</strong></p>
+                            
+                            <p><strong>[Date]</strong></p>
+                            
+                            <p><strong>[Healthcare Provider/Privacy Officer Name]</strong><br>
+                            <strong>[Provider Address]</strong><br>
+                            <strong>[City, State, ZIP Code]</strong></p>
+                            
+                            <p><strong>Re: Request to Opt Out of Health Information Exchange</strong><br>
+                            <strong>Patient Name:</strong> [Your Full Name]<br>
+                            <strong>Date of Birth:</strong> [Your DOB]<br>
+                            <strong>Patient ID/MRN:</strong> [If known]</p>
+                            
+                            <p>Dear Privacy Officer,</p>
+                            
+                            <p>I am writing to formally request that my health information be excluded from any health information exchange (HIE) networks or data sharing arrangements that your organization participates in.</p>
+                            
+                            <p>Specifically, I am requesting to opt out of:</p>
+                            <ul>
+                                <li>All state and regional HIE networks</li>
+                                <li>Inter-provider electronic health information sharing</li>
+                                <li>Third-party health information exchanges</li>
+                                <li>Any other electronic sharing of my protected health information for purposes other than direct treatment by your organization</li>
+                            </ul>
+                            
+                            <p>I understand that this opt-out may not apply to:</p>
+                            <ul>
+                                <li>Information sharing required by law</li>
+                                <li>Information shared for treatment, payment, and healthcare operations within your organization</li>
+                                <li>Public health reporting requirements</li>
+                                <li>Emergency situations where my health or safety may be at risk</li>
+                            </ul>
+                            
+                            <p>Please confirm in writing that you have processed this request and provide details about:</p>
+                            <ul>
+                                <li>What information sharing has been restricted</li>
+                                <li>Any limitations to this opt-out</li>
+                                <li>How to modify or reverse this decision if needed</li>
+                            </ul>
+                            
+                            <p>Thank you for your attention to this matter. I look forward to your written confirmation.</p>
+                            
+                            <p>Sincerely,<br>
+                            <strong>[Your Signature]</strong><br>
+                            <strong>[Your Printed Name]</strong></p>
+                        </div>
+                    </div>
+                    <button class="copy-template-btn" onclick="copyTemplate('letter')">Copy Template</button>
+                </div>
+                
+                <div class="template-card">
+                    <h3>Patient Rights Request Form</h3>
+                    <p>A simple form to request information about your privacy rights and current opt-out status.</p>
+                    <div class="template-content">
+                        <h4>Information Request Form:</h4>
+                        <div class="form-template">
+                            <p><strong>Patient Information Request</strong></p>
+                            <p><strong>Patient Name:</strong> ________________________<br>
+                            <strong>Date of Birth:</strong> ________________________<br>
+                            <strong>Patient ID/MRN:</strong> ________________________<br>
+                            <strong>Contact Phone:</strong> ________________________<br>
+                            <strong>Email:</strong> ________________________</p>
+                            
+                            <p><strong>I am requesting information about:</strong></p>
+                            <p>☐ Current HIE participation status for my health records<br>
+                            ☐ List of HIE networks my information is currently shared with<br>
+                            ☐ Process for opting out of HIE sharing<br>
+                            ☐ My current opt-out status<br>
+                            ☐ How to modify my current privacy preferences<br>
+                            ☐ Other: ________________________</p>
+                            
+                            <p><strong>Preferred response method:</strong><br>
+                            ☐ Mail to address on file<br>
+                            ☐ Email (secure portal if available)<br>
+                            ☐ Phone call<br>
+                            ☐ In-person pickup</p>
+                            
+                            <p><strong>Patient Signature:</strong> ________________________<br>
+                            <strong>Date:</strong> ________________________</p>
+                        </div>
+                    </div>
+                    <button class="copy-template-btn" onclick="copyTemplate('form')">Copy Template</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Legal Resources -->
+        <section class="legal-resources">
+            <h2>Legal Information & Patient Rights</h2>
+            
+            <div class="legal-grid">
+                <div class="legal-card">
+                    <h3>HIPAA Privacy Rights</h3>
+                    <p>Understanding your rights under the Health Insurance Portability and Accountability Act.</p>
+                    <ul class="rights-list">
+                        <li>Right to access your health information</li>
+                        <li>Right to request corrections to your health information</li>
+                        <li>Right to request restrictions on how your information is used</li>
+                        <li>Right to request confidential communications</li>
+                        <li>Right to file a complaint if you believe your privacy rights have been violated</li>
+                    </ul>
+                    <div class="resource-links">
+                        <a href="https://www.hhs.gov/hipaa/for-individuals/guidance-materials-for-consumers/index.html" target="_blank" rel="noopener">HIPAA Consumer Guide (HHS)</a>
+                        <a href="https://www.hhs.gov/hipaa/filing-a-complaint/index.html" target="_blank" rel="noopener">File a HIPAA Complaint</a>
+                    </div>
+                </div>
+                
+                <div class="legal-card">
+                    <h3>State Privacy Laws</h3>
+                    <p>Many states have additional privacy protections that may be stronger than federal HIPAA requirements.</p>
+                    <ul class="rights-list">
+                        <li>State-specific consent requirements</li>
+                        <li>Additional restrictions on mental health information</li>
+                        <li>Enhanced protections for substance abuse treatment records</li>
+                        <li>Stricter requirements for information sharing</li>
+                        <li>State privacy complaint processes</li>
+                    </ul>
+                    <div class="resource-links">
+                        <a href="states.html">View State-Specific Information</a>
+                    </div>
+                </div>
+                
+                <div class="legal-card">
+                    <h3>42 CFR Part 2</h3>
+                    <p>Special federal protections for substance abuse treatment records.</p>
+                    <ul class="rights-list">
+                        <li>Stricter consent requirements for disclosure</li>
+                        <li>Enhanced patient control over information sharing</li>
+                        <li>Special protections in HIE environments</li>
+                        <li>Right to revoke consent for sharing</li>
+                        <li>Prohibition on re-disclosure without consent</li>
+                    </ul>
+                    <div class="resource-links">
+                        <a href="https://www.samhsa.gov/about-us/who-we-are/laws-regulations/confidentiality-regulations-faqs" target="_blank" rel="noopener">SAMHSA Part 2 FAQ</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Resources -->
+        <section class="technical-resources">
+            <h2>Technical Information</h2>
+            
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <h3>Understanding HIE Technology</h3>
+                    <div class="tech-content">
+                        <h4>Common HIE Types:</h4>
+                        <ul>
+                            <li><strong>Centralized HIE:</strong> Data stored in a central repository</li>
+                            <li><strong>Federated HIE:</strong> Data remains with original providers, accessed as needed</li>
+                            <li><strong>Hybrid HIE:</strong> Combination of centralized and federated approaches</li>
+                            <li><strong>Query-Based:</strong> Information retrieved only when specifically requested</li>
+                            <li><strong>Push-Based:</strong> Information automatically sent to participating providers</li>
+                        </ul>
+                        
+                        <h4>Common Data Standards:</h4>
+                        <ul>
+                            <li>HL7 (Health Level 7)</li>
+                            <li>FHIR (Fast Healthcare Interoperability Resources)</li>
+                            <li>CCDA (Consolidated Clinical Document Architecture)</li>
+                            <li>DICOM (Digital Imaging and Communications in Medicine)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="tech-card">
+                    <h3>Privacy & Security Measures</h3>
+                    <div class="tech-content">
+                        <h4>Technical Safeguards:</h4>
+                        <ul>
+                            <li>Encryption in transit and at rest</li>
+                            <li>Access controls and authentication</li>
+                            <li>Audit logs and monitoring</li>
+                            <li>Data masking and anonymization</li>
+                            <li>Secure transmission protocols</li>
+                        </ul>
+                        
+                        <h4>Administrative Safeguards:</h4>
+                        <ul>
+                            <li>Business Associate Agreements (BAAs)</li>
+                            <li>Data governance policies</li>
+                            <li>Staff training and access management</li>
+                            <li>Incident response procedures</li>
+                            <li>Privacy impact assessments</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Helpful Tools -->
+        <section class="helpful-tools">
+            <h2>Helpful Tools & Checklists</h2>
+            
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <h3>Pre-Appointment Checklist</h3>
+                    <div class="checklist">
+                        <h4>Before Your Healthcare Visit:</h4>
+                        <label class="checkbox-item">
+                            <input type="checkbox"> Review your current HIE opt-out status
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox"> Prepare questions about information sharing
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox"> Bring identification for verification
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox"> Have contact information for privacy office
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox"> Understand your provider's HIE participation
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox"> Know your state's opt-out laws
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="tool-card">
+                    <h3>Questions to Ask Your Provider</h3>
+                    <div class="questions-list">
+                        <ul>
+                            <li>Which HIE networks does your organization participate in?</li>
+                            <li>What information is shared through these networks?</li>
+                            <li>Can I opt out of HIE participation? What's the process?</li>
+                            <li>Will opting out affect my care or access to services?</li>
+                            <li>How will you handle emergency situations if I opt out?</li>
+                            <li>Can I opt out of some networks but not others?</li>
+                            <li>How do I change my opt-out preferences in the future?</li>
+                            <li>Will you provide written confirmation of my opt-out status?</li>
+                            <li>How long does it take to process an opt-out request?</li>
+                            <li>Who should I contact if I have concerns about information sharing?</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="tool-card">
+                    <h3>Record Keeping Tips</h3>
+                    <div class="tips-content">
+                        <h4>Important Documents to Keep:</h4>
+                        <ul>
+                            <li>Copies of all opt-out requests</li>
+                            <li>Written confirmations from providers</li>
+                            <li>Communication records (emails, letters, calls)</li>
+                            <li>Documentation of your current opt-out status</li>
+                            <li>Contact information for privacy offices</li>
+                        </ul>
+                        
+                        <h4>Organization Tips:</h4>
+                        <ul>
+                            <li>Create a dedicated folder for HIE documents</li>
+                            <li>Keep both physical and digital copies</li>
+                            <li>Note dates and reference numbers</li>
+                            <li>Review and update your records annually</li>
+                            <li>Share relevant information with family/caregivers</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- External Resources -->
+        <section class="external-resources">
+            <h2>Additional Resources</h2>
+            
+            <div class="external-grid">
+                <div class="external-category">
+                    <h3>Government Resources</h3>
+                    <ul class="external-links">
+                        <li><a href="https://www.healthit.gov/" target="_blank" rel="noopener">HealthIT.gov - Federal Health IT Portal</a></li>
+                        <li><a href="https://www.hhs.gov/hipaa/" target="_blank" rel="noopener">HHS HIPAA Information</a></li>
+                        <li><a href="https://www.cdc.gov/privacy/" target="_blank" rel="noopener">CDC Privacy Information</a></li>
+                        <li><a href="https://www.samhsa.gov/" target="_blank" rel="noopener">SAMHSA - Substance Abuse Privacy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="external-category">
+                    <h3>Professional Organizations</h3>
+                    <ul class="external-links">
+                        <li><a href="https://www.himss.org/" target="_blank" rel="noopener">HIMSS - Healthcare IT Professionals</a></li>
+                        <li><a href="https://www.ahima.org/" target="_blank" rel="noopener">AHIMA - Health Information Management</a></li>
+                        <li><a href="https://www.iapp.org/" target="_blank" rel="noopener">IAPP - Privacy Professionals</a></li>
+                    </ul>
+                </div>
+                
+                <div class="external-category">
+                    <h3>Consumer Advocacy</h3>
+                    <ul class="external-links">
+                        <li><a href="https://www.patientprivacyrights.org/" target="_blank" rel="noopener">Patient Privacy Rights</a></li>
+                        <li><a href="https://www.eff.org/" target="_blank" rel="noopener">Electronic Frontier Foundation</a></li>
+                        <li><a href="https://epic.org/" target="_blank" rel="noopener">Electronic Privacy Information Center</a></li>
+                    </ul>
+                </div>
+                
+                <div class="external-category">
+                    <h3>Technical Standards</h3>
+                    <ul class="external-links">
+                        <li><a href="https://www.hl7.org/" target="_blank" rel="noopener">HL7 International</a></li>
+                        <li><a href="https://hl7.org/fhir/" target="_blank" rel="noopener">FHIR Standard</a></li>
+                        <li><a href="https://www.sequoiaproject.org/" target="_blank" rel="noopener">Sequoia Project</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Disclaimer -->
+        <section class="disclaimer-section">
+            <h2>Important Disclaimers</h2>
+            
+            <div class="disclaimer-content">
+                <div class="disclaimer-card">
+                    <h3>⚖️ Legal Disclaimer</h3>
+                    <p>
+                        This website provides general information about health information exchange opt-out processes 
+                        and is not intended as legal advice. Laws and regulations vary by state and may change over time. 
+                        For specific legal guidance, consult with a qualified attorney or privacy professional.
+                    </p>
+                </div>
+                
+                <div class="disclaimer-card">
+                    <h3>🤖 AI Assistance Notice</h3>
+                    <p>
+                        This website was created with assistance from generative artificial intelligence tools. 
+                        While we strive for accuracy, all information should be verified with official sources 
+                        and healthcare providers. The AI-generated content has been reviewed but may contain errors.
+                    </p>
+                </div>
+                
+                <div class="disclaimer-card">
+                    <h3>📊 Information Currency</h3>
+                    <p>
+                        Healthcare regulations and HIE networks change frequently. The information on this site 
+                        may not reflect the most current requirements or procedures. Always verify information 
+                        directly with your healthcare providers and relevant authorities.
+                    </p>
+                </div>
+            </div>
+        </section>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <!-- Footer will be populated by navigation.js -->
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="navigation.js"></script>
+    <script src="resources.js"></script>
+</body>
+</html>

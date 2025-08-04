@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - HIE Opt-Out Guide</title>
+    <meta name="description" content="Frequently asked questions about opting out of Health Information Exchange sharing.">
+    <link rel="stylesheet" href="shared.css">
+    <link rel="stylesheet" href="faq.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="nav">
+        <!-- Navigation will be populated by navigation.js -->
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1 class="page-title">Frequently Asked Questions</h1>
+            <p class="page-subtitle">Common questions and answers about HIE opt-out procedures</p>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="content-section">
+            <div class="container">
+                <div class="faq-container">
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>What small healthcare providers do I need to call? (Dentist, eye doctor, chiropractor, therapist)</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-content">
+                                <p>You should contact <strong>all</strong> healthcare providers who might have your medical information, including:</p>
+                                
+                                <h4>Primary Healthcare Providers:</h4>
+                                <ul>
+                                    <li><strong>Primary Care Physicians</strong> - Family doctors, internists, pediatricians</li>
+                                    <li><strong>Specialists</strong> - Cardiologists, endocrinologists, dermatologists, etc.</li>
+                                    <li><strong>Mental Health Providers</strong> - Psychiatrists, psychologists, therapists, counselors</li>
+                                    <li><strong>Emergency and Urgent Care</strong> - Hospital systems, urgent care centers</li>
+                                </ul>
+
+                                <h4>Specialty Care Providers:</h4>
+                                <ul>
+                                    <li><strong>Dental Care</strong> - Dentists, oral surgeons, orthodontists</li>
+                                    <li><strong>Eye Care</strong> - Optometrists, ophthalmologists</li>
+                                    <li><strong>Physical Therapy</strong> - Physical therapists, occupational therapists</li>
+                                    <li><strong>Alternative Medicine</strong> - Chiropractors, acupuncturists (if they use EHR systems)</li>
+                                    <li><strong>Women's Health</strong> - OB/GYNs, reproductive health clinics</li>
+                                </ul>
+
+                                <h4>What to Ask Each Provider:</h4>
+                                <ol>
+                                    <li>Do you participate in any Health Information Exchange networks?</li>
+                                    <li>Do you share my information through Epic Care Everywhere, CareQuality, or other HIE systems?</li>
+                                    <li>How can I opt out of any health information sharing?</li>
+                                    <li>Can you provide written confirmation of my opt-out preference?</li>
+                                </ol>
+
+                                <div class="tip-box">
+                                    <p><strong>Pro Tip:</strong> Many smaller providers (especially dental and vision) may not participate in major HIE networks, but it's worth asking. The largest risk is usually from major hospital systems and large healthcare networks.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>I'm on Medicare. Can I avoid having a federal health record?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-content">
+                                <p>Medicare beneficiaries face <strong>multiple layers</strong> of health data sharing, some of which are harder to avoid than others:</p>
+                                
+                                <h4>Medicare Claims Data (Hard to Avoid):</h4>
+                                <ul>
+                                    <li><strong>Medicare Parts A & B:</strong> Claims data is automatically collected by CMS (Centers for Medicare & Medicaid Services)</li>
+                                    <li><strong>Medicare Advantage (Part C):</strong> Private insurers also collect comprehensive data</li>
+                                    <li><strong>Medicare Part D:</strong> Prescription drug data is tracked</li>
+                                    <li>This data is used for billing, fraud prevention, and healthcare research</li>
+                                </ul>
+
+                                <h4>What You CAN Control:</h4>
+                                <ul>
+                                    <li><strong>Provider HIE Sharing:</strong> Opt out of Epic Care Everywhere, CareQuality, and state HIEs</li>
+                                    <li><strong>Medicare Shared Savings Program:</strong> Ask if your providers participate and opt out if possible</li>
+                                    <li><strong>Quality Reporting Programs:</strong> Some have opt-out provisions</li>
+                                    <li><strong>Research Databases:</strong> Opt out of additional data sharing for research</li>
+                                </ul>
+
+                                <h4>Federal Programs to Ask About:</h4>
+                                <ul>
+                                    <li><strong>Blue Button 2.0:</strong> Medicare's API program (you control this)</li>
+                                    <li><strong>Chronic Care Management:</strong> Some programs share data with care coordinators</li>
+                                    <li><strong>Medicare Quality Programs:</strong> Hospital quality reporting and value-based care</li>
+                                </ul>
+
+                                <h4>Action Steps for Medicare Beneficiaries:</h4>
+                                <ol>
+                                    <li>Contact each of your healthcare providers to opt out of HIE sharing</li>
+                                    <li>Ask your Medicare Advantage plan (if applicable) about data sharing policies</li>
+                                    <li>Review any care management programs you're enrolled in</li>
+                                    <li>Consider supplemental insurance privacy policies</li>
+                                    <li>Be aware that basic Medicare claims data will still be collected</li>
+                                </ol>
+
+                                <div class="warning-box">
+                                    <p><strong>Important:</strong> You cannot completely avoid federal health records if you use Medicare benefits. The goal is to minimize <em>additional</em> sharing beyond what's required for billing and basic program administration.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Will opting out affect my medical care?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-content">
+                                <p><strong>Legally, no.</strong> Healthcare providers cannot deny you care for opting out of HIE sharing. However, there are practical considerations:</p>
+                                
+                                <h4>What Won't Change:</h4>
+                                <ul>
+                                    <li>Quality of medical care you receive</li>
+                                    <li>Access to treatments, procedures, or medications</li>
+                                    <li>Your provider's ability to access their own records of your care</li>
+                                    <li>Emergency care (providers can still treat you)</li>
+                                </ul>
+
+                                <h4>What Might Change:</h4>
+                                <ul>
+                                    <li>You may need to bring medical records to new appointments</li>
+                                    <li>Providers might need to repeat some tests if they can't access previous results</li>
+                                    <li>You'll need to be more proactive in sharing relevant medical history</li>
+                                    <li>Coordination between specialists might require more effort on your part</li>
+                                </ul>
+
+                                <h4>Best Practices After Opting Out:</h4>
+                                <ul>
+                                    <li>Keep your own copy of important medical records</li>
+                                    <li>Maintain a list of current medications, allergies, and diagnoses</li>
+                                    <li>Request records from previous providers when seeing new ones</li>
+                                    <li>Consider a personal health record app or folder</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>How do I know if my opt-out worked?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-content">
+                                <p>Here's how to verify your opt-out was successful:</p>
+                                
+                                <h4>Request Written Confirmation:</h4>
+                                <ul>
+                                    <li>Ask for written confirmation from each provider's Privacy Officer</li>
+                                    <li>The confirmation should specify which HIE networks you've opted out of</li>
+                                    <li>Keep copies of all opt-out forms and confirmations</li>
+                                </ul>
+
+                                <h4>Follow Up Timeline:</h4>
+                                <ul>
+                                    <li><strong>Week 1-2:</strong> Submit opt-out forms</li>
+                                    <li><strong>Week 3-4:</strong> Follow up if no acknowledgment received</li>
+                                    <li><strong>Month 2:</strong> Request written confirmation of processing</li>
+                                    <li><strong>Month 6:</strong> Verify status hasn't changed with annual check-ins</li>
+                                </ul>
+
+                                <h4>Test Your Opt-Out Status:</h4>
+                                <ul>
+                                    <li>When visiting a new provider, ask if they can see your records from other systems</li>
+                                    <li>Request to see what information appears in their system about you</li>
+                                    <li>Check patient portals for any external record sharing</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>What's the difference between HIPAA and HIE opt-out?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-content">
+                                <p>This is a crucial distinction that many people find confusing:</p>
+                                
+                                <h4>HIPAA (Federal Law):</h4>
+                                <ul>
+                                    <li><strong>Allows</strong> sharing for "treatment, payment, and healthcare operations" without your consent</li>
+                                    <li>Covers how your existing provider handles your information</li>
+                                    <li>Requires you to be notified about privacy practices</li>
+                                    <li>Does NOT require consent for most HIE sharing</li>
+                                </ul>
+
+                                <h4>HIE Opt-Out (State Laws):</h4>
+                                <ul>
+                                    <li><strong>Restricts</strong> sharing beyond the immediate provider relationship</li>
+                                    <li>Covers electronic sharing with other healthcare systems</li>
+                                    <li>Requires providers to honor your opt-out preference</li>
+                                    <li>Goes beyond HIPAA's baseline protections</li>
+                                </ul>
+
+                                <h4>Key Takeaway:</h4>
+                                <p>HIPAA actually <em>permits</em> most HIE sharing, while state HIE opt-out laws give you the right to <em>prevent</em> that sharing. You need HIE opt-out procedures, not just HIPAA requests.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Can I opt back in later if I change my mind?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-content">
+                                <p><strong>Yes!</strong> HIE opt-out decisions are generally reversible, though the process varies by provider and state:</p>
+                                
+                                <h4>How to Opt Back In:</h4>
+                                <ul>
+                                    <li>Contact the same Privacy Officer who handled your opt-out</li>
+                                    <li>Request to reverse your HIE opt-out preference</li>
+                                    <li>Fill out any required forms (may be the same form with different selection)</li>
+                                    <li>Verify the change with written confirmation</li>
+                                </ul>
+
+                                <h4>What to Expect:</h4>
+                                <ul>
+                                    <li>Processing time similar to original opt-out (1-4 weeks)</li>
+                                    <li>Your information will start being shared again going forward</li>
+                                    <li>Previous medical records may or may not be retroactively shared (varies by system)</li>
+                                    <li>You can opt out again in the future if desired</li>
+                                </ul>
+
+                                <h4>Partial Opt-In Options:</h4>
+                                <p>Some systems may allow you to:</p>
+                                <ul>
+                                    <li>Opt in to sharing with specific providers only</li>
+                                    <li>Share only certain types of information (emergency info only)</li>
+                                    <li>Set time-limited sharing preferences</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>What if my provider says they "don't do HIE" or "don't know what that is"?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-content">
+                                <p>This is surprisingly common, especially with front desk staff. Here's how to handle it:</p>
+                                
+                                <h4>Escalate to the Right Person:</h4>
+                                <ul>
+                                    <li>Ask specifically for the "Privacy Officer" or "HIPAA Privacy Officer"</li>
+                                    <li>Request the "Health Information Management" department</li>
+                                    <li>Ask to speak with the Practice Manager or Office Manager</li>
+                                    <li>Don't accept "we don't do that" from front desk staff</li>
+                                </ul>
+
+                                <h4>Use Specific Terms:</h4>
+                                <ul>
+                                    <li>"Epic Care Everywhere" (if they use Epic EHR)</li>
+                                    <li>"CareQuality network participation"</li>
+                                    <li>"Electronic health information exchange"</li>
+                                    <li>"Interoperability with other healthcare systems"</li>
+                                </ul>
+
+                                <h4>Reference Your Rights:</h4>
+                                <ul>
+                                    <li>Mention your state's specific HIE opt-out law (if applicable)</li>
+                                    <li>Ask them to check with their legal or compliance team</li>
+                                    <li>Request written confirmation that they don't participate in any HIE networks</li>
+                                </ul>
+
+                                <h4>Red Flags (They Probably DO Participate):</h4>
+                                <ul>
+                                    <li>They use Epic, Cerner, or other major EHR systems</li>
+                                    <li>They're part of a large hospital system</li>
+                                    <li>They mention being able to see your records from other providers</li>
+                                    <li>They ask if you want them to "look up" your information</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-title">Still Have Questions?</h2>
+                    <p style="font-size: 1.125rem; margin-bottom: 2rem; color: #64748b;">Check out our other resources for more detailed guidance.</p>
+                    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                        <a href="about.html" class="btn btn-primary">Learn About HIE</a>
+                        <a href="states.html" class="btn btn-secondary">Find Your State</a>
+                        <a href="providers.html" class="btn btn-secondary">Provider Directory</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <!-- Footer will be populated by navigation.js -->
+    </footer>
+
+    <script src="navigation.js"></script>
+    <script src="faq.js"></script>
+</body>
+</html>

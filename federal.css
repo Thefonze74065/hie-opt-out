@@ -1,0 +1,336 @@
+/* Federal page specific styles */
+
+.notice-banner {
+    background: linear-gradient(135deg, #fef3cd 0%, #fde68a 100%);
+    border: 1px solid #f59e0b;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.1);
+}
+
+.notice-banner h2 {
+    color: #92400e;
+    margin: 0 0 0.75rem 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.notice-banner p {
+    color: #92400e;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Federal Networks Section */
+.federal-networks {
+    margin: 3rem 0;
+}
+
+.federal-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.federal-card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.federal-card h3 {
+    color: #1f2937;
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.network-type {
+    display: inline-block;
+    background: #dbeafe;
+    color: #1e40af;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+}
+
+.network-details h4 {
+    color: #374151;
+    margin: 1.5rem 0 0.75rem 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 0.5rem;
+}
+
+.network-details h4:first-child {
+    margin-top: 0;
+}
+
+.contact-section,
+.opt-out-process,
+.special-notes {
+    margin: 1.5rem 0;
+}
+
+.contact-info {
+    background: #f9fafb;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-top: 0.75rem;
+}
+
+.contact-info p {
+    margin: 0.5rem 0;
+}
+
+.contact-info p:first-child {
+    margin-top: 0;
+}
+
+.contact-info p:last-child {
+    margin-bottom: 0;
+}
+
+.contact-info a {
+    color: #2563eb;
+    text-decoration: none;
+    word-break: break-all;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+.opt-out-process ul,
+.special-notes ul {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    padding: 1rem 1rem 1rem 2rem;
+    margin: 0.75rem 0;
+}
+
+.opt-out-process li,
+.special-notes li {
+    margin: 0.5rem 0;
+    line-height: 1.6;
+}
+
+/* Comparison Section */
+.comparison-section {
+    margin: 3rem 0;
+    padding: 2rem 0;
+    border-top: 1px solid #e5e7eb;
+}
+
+.comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.comparison-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.comparison-card h3 {
+    color: #1f2937;
+    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-align: center;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.comparison-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.comparison-card li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    line-height: 1.5;
+    color: #374151;
+}
+
+.comparison-card li::before {
+    content: "•";
+    color: #3b82f6;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+/* General Steps Section */
+.general-steps {
+    margin: 3rem 0;
+    padding: 2rem 0;
+    border-top: 1px solid #e5e7eb;
+}
+
+.steps-container {
+    margin-top: 2rem;
+}
+
+.step {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.step:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.step-number {
+    background: #3b82f6;
+    color: #ffffff;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1.125rem;
+    flex-shrink: 0;
+    margin-right: 1.5rem;
+}
+
+.step-content h3 {
+    color: #1f2937;
+    margin: 0 0 0.5rem 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.step-content p {
+    color: #6b7280;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Resources Section */
+.resources-section {
+    margin: 3rem 0;
+    padding: 2rem 0;
+    border-top: 1px solid #e5e7eb;
+}
+
+.resource-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.resource-item {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.resource-item h3 {
+    color: #1f2937;
+    margin: 0 0 1rem 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.resource-item ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.resource-item li {
+    margin: 0.5rem 0;
+}
+
+.resource-item a {
+    color: #2563eb;
+    text-decoration: none;
+    line-height: 1.5;
+}
+
+.resource-item a:hover {
+    text-decoration: underline;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .comparison-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .federal-card {
+        padding: 1.5rem;
+    }
+    
+    .step {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .step-number {
+        margin: 0 0 1rem 0;
+    }
+    
+    .step-content {
+        text-align: left;
+    }
+    
+    .resource-links {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .notice-banner {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .federal-card {
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .network-details h4 {
+        font-size: 1rem;
+    }
+    
+    .step {
+        padding: 1rem;
+    }
+    
+    .resource-item {
+        padding: 1rem;
+    }
+}
