@@ -102,6 +102,9 @@ function createFooter() {
                     </div>
                 </div>
                 <div class="footer-bottom">
+                    <div class="footer-support">
+                        <p>This resource is provided freely to help protect healthcare privacy rights. If you find it valuable, consider <a href="https://ko-fi.com/thefonze7" target="_blank" rel="noopener" class="support-link">supporting the project</a>.</p>
+                    </div>
                     <p>&copy; 2025 HIE Opt-Out Guide. This website is not affiliated with any government agency or healthcare organization.</p>
                 </div>
             </div>
