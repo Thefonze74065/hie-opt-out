@@ -50,31 +50,25 @@ class StatesPage {
 		});
 	}
 
-	getStateColor(optOutStatus) {
-		switch (optOutStatus) {
-			case 'opt-out':
-				return '#10b981'; // Green for opt-out available
-			case 'opt-in':
-				return '#3b82f6'; // Blue for opt-in only
-			case 'no-option':
-				return '#ef4444'; // Red for no option
-			case 'unknown':
-			default:
-				return '#e5e7eb'; // Gray for unknown/no data
+	getStateColor(optOutStatus, stateCode) {
+		// Development mode: Show reviewed vs unreviewed states
+		const reviewedStates = []; // States that have been researched and updated
+
+		if (reviewedStates.includes(stateCode)) {
+			return '#10b981'; // Green for reviewed states
+		} else {
+			return '#ef4444'; // Red for unreviewed states
 		}
 	}
 
-	getStateHoverColor(optOutStatus) {
-		switch (optOutStatus) {
-			case 'opt-out':
-				return '#059669'; // Darker green
-			case 'opt-in':
-				return '#2563eb'; // Darker blue
-			case 'no-option':
-				return '#dc2626'; // Darker red
-			case 'unknown':
-			default:
-				return '#d1d5db'; // Darker gray
+	getStateHoverColor(optOutStatus, stateCode) {
+		// Development mode: Show reviewed vs unreviewed states
+		const reviewedStates = []; // States that have been researched and updated
+
+		if (reviewedStates.includes(stateCode)) {
+			return '#059669'; // Darker green for reviewed states
+		} else {
+			return '#dc2626'; // Darker red for unreviewed states
 		}
 	}
 
@@ -101,9 +95,9 @@ class StatesPage {
 				const state = stateData[stateCode];
 				const optOutStatus = state ? state.optOutStatus : 'unknown';
 
-				// Set initial styling based on opt-out status
-				const stateColor = this.getStateColor(optOutStatus);
-				const hoverColor = this.getStateHoverColor(optOutStatus);
+				// Set initial styling based on review status
+				const stateColor = this.getStateColor(optOutStatus, stateCode);
+				const hoverColor = this.getStateHoverColor(optOutStatus, stateCode);
 
 				path.style.fill = stateColor;
 				path.style.cursor = state ? 'pointer' : 'default';
