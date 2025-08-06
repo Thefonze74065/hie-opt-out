@@ -7,26 +7,27 @@ window.stateData['ak'] = {
 		available: true,
 		law: "7 AAC § 166.050",
 		lawUrl: "https://law.alaska.gov/decisions/2023/7-AAC-166-050.html",
-		process: "Centralized opt-out (statewide HIE with single form)",
-		effectiveDate: "August 4, 2023",
+		process: "Centralized opt-out",
+		effectiveDate: "August 6, 2025",
 		contacts: [
 			{
 				name: "healthEconnect Alaska Support",
 				phone: "907-770-2626",
 				email: "support@ak-ehealth.org",
-				website: "https://www.ak-ehealth.org",
-				type: "State HIE Help Desk",
+				website: "https://healtheconnectak.org/available-resources/patient-opt-out/",
+				type: "",
 				notes: "Call and select Option 2 for opt-out guidance and forms"
 			}
 		],
 		steps: [
 			"Contact your provider or call healthEconnect Alaska directly at 907-770-2626, Option 2",
-			"Request the HIE opt-out form",
+			"Request the HIE opt-out form, or download it from their website",
 			"Complete and sign the form - this revokes access across all participating providers",
 			"Submit form via mail, fax, or secure submission as instructed"
 		],
-		template: "",
-		majorProviders: [
+		template: "I'd like to opt-out of healthEconnect Alaska. Can you guide me through the process?",
+		majorProviders: [ //leave blank for now - Major healthcare providers in the state that are likely to participate in HIEs
+			"None currently. will add soon"
 		],
 		additionalInfo: {
 			emergencyAccess: "Opting out means your information will not be shared through HIE networks, even in emergencies. Consider keeping a personal health summary card.",
