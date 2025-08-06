@@ -7,8 +7,8 @@ window.stateData['wi'] = {
   optOutStatus: "opt-out", // Patients are automatically included unless they opt-out
   hieOptOut: {
     available: true,
-    law: "No specific statute; governed by state HIE policy under DHS/WISHIN",
-    lawUrl: "https://www.dhs.wisconsin.gov/publications/p03596.pdf",
+    law: "Wisconsin HIE policy under DHS/publication F-03276",
+    lawUrl: "https://www.dhs.wisconsin.gov/forms/f03276.pdf",
     process: "Complete and submit DHS Patient Choice Form to WISHIN or treating facility",
     effectiveDate: "Guide updated March 2024 (form F-03276)",
     contacts: [

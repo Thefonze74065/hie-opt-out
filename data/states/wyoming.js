@@ -1,40 +1,45 @@
 window.stateData = window.stateData || {};
-
 window.stateData['wy'] = {
-	name: "Wyoming",
-	optOutStatus: "opt-out", // "opt-out", "opt-in", "no-option", "unknown"
-	hieOptOut: {
-		available: true,
-		law: "Wyoming Health Information Exchange Rules",
-		lawUrl: "https://health.wyo.gov/",
-		process: "Provider-based opt-out (no centralized state form)",
-		effectiveDate: "Ongoing",
-		contacts: [
-			{
-				name: "Wyoming Department of Health",
-				phone: "307-777-7656",
-				email: "health@wyo.gov",
-				website: "https://health.wyo.gov/",
-				type: "State Health Department",
-				notes: "General health information questions and HIE guidance"
-			}
-		],
-		steps: [
-			"Contact your provider's Privacy Officer (not front desk staff)",
-			"State specifically that you want to opt out of Health Information Exchange sharing",
-			"Request HIE opt-out form for your specific network (Epic Care Everywhere, CareQuality, etc.)",
-			"Complete form and verify identity (typically requires provider signature or notarization)",
-			"Submit form as instructed (usually mail or fax)",
-			"Request confirmation that your opt-out request has been processed",
-			"Retain a copy of the form and proof of submission for your records"
-		],
-		template: "I request to exercise my right to opt out of participation in Wyoming Health Information Exchange networks. I understand that this will prevent my health data from being shared across participating networks, and I request that your office provide the necessary form and instructions to complete this request.",
-		majorProviders: [
-			"banner-health-wyoming"
-		],
-		additionalInfo: {
-			emergencyAccess: "Opting out means your information will not be shared through HIE networks, even in emergencies. Consider keeping a personal health summary card.",
-			exceptions: "Law enforcement, public health authorities, and court orders can still access your health records in certain situations as required by federal law"
-		}
-	}
+  name: "Wyoming",
+  optOutStatus: "opt-out", // Patients are included unless they request exclusion
+  hieOptOut: {
+    available: true,
+    law: "Wyoming Administrative Rule Chapter 1, WYFI under W.S. § 9-2-131",
+    lawUrl: "https://health.wyo.gov/healthcarefin/wyoming_frontier_information_wyfi/opt-out-opt-in/",
+    process: "centralized opt-out", // Provider submits patient form to WYFI, WYFI handles opt‑out
+    effectiveDate: "August 6, 2025",
+    contacts: [
+      {
+        name: "Wyoming Department of Health - WYFI Office",
+        phone: "(307)777-7594 or (866)571-0944",
+        email: "wdh-wyfi-hie@wyo.gov",
+        website: "https://health.wyo.gov/healthcarefin/wyoming_frontier_information_wyfi/",
+        type: "State HIE Office",
+        notes: "WYFI manages opt-out centrally and processes revocations"
+      }
+    ],
+    steps: [
+      "Obtain WYFI Opt-Out form from your provider or WYFI website",
+      "Complete and sign the form (patient or legal rep signature required)",
+      "Submit form to your provider's Privacy Officer",
+      "Provider forwards request to WYFI for processing",
+      "Allow 2-5 business days for processing",
+      "WYFI sends confirmation; to opt back in, submit a revocation form"
+    ],
+    template: "I hereby revoke consent for my health information to be shared through WYFI Health Information Exchange under Wyoming Administrative Rule Chapter 1 and W.S. § 9‑2‑131. Please process my opt‑out and confirm completion.",
+    majorProviders: [
+      "Wyoming Frontier Information (WYFI state network)",
+      "Cheyenne Regional Medical Center",
+      "Campbell County Memorial Hospital",
+      "Cody Regional Health",
+      "Ivinson Memorial Hospital (Laramie)",
+      "Memorial Hospital of Sweetwater County (Rock Springs)",
+      "Health clinics and county hospitals statewide connected to WYFI"
+    ],
+    additionalInfo: {
+      emergencyAccess: "When opted out, providers cannot access your data via WYFI—even in emergencies.",
+      exceptions: "Opt-out applies only to WYFI exchange. Providers may still use fax, phone, email, or public health reporting under HIPAA."
+    }
+  }
 };
+
