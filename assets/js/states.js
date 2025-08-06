@@ -52,7 +52,7 @@ class StatesPage {
 
 	getStateColor(optOutStatus, stateCode) {
 		// Development mode: Show reviewed vs unreviewed states
-		const reviewedStates = ['il', 'nc', 'ma']; // States that have been researched and updated
+		const reviewedStates = ['il', 'nc', 'ma', 'al', 'ak', 'az', 'wy', 'wi']; // States that have been researched and updated
 
 		if (reviewedStates.includes(stateCode)) {
 			return '#10b981'; // Green for reviewed states
@@ -63,7 +63,7 @@ class StatesPage {
 
 	getStateHoverColor(optOutStatus, stateCode) {
 		// Development mode: Show reviewed vs unreviewed states
-		const reviewedStates = ['il', 'nc', 'ma']; // States that have been researched and updated
+		const reviewedStates = ['il', 'nc', 'ma', 'al', 'ak', 'az', 'wy', 'wi']; // States that have been researched and updated
 
 		if (reviewedStates.includes(stateCode)) {
 			return '#059669'; // Darker green for reviewed states

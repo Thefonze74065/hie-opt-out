@@ -5,13 +5,13 @@ window.stateData['ar'] = {
 	optOutStatus: "opt-out", // "opt-out", "opt-in", "no-option", "unknown"
 	hieOptOut: {
 		available: true,
-		law: "Arkansas Health Information Exchange Rules",
-		lawUrl: "https://www.healthy.arkansas.gov/",
-		process: "Provider-based opt-out (no centralized state form)",
+		law: "Arkansas Administrative Code — Rule 220.00.13‑001",
+		lawUrl: "https://www.law.cornell.edu/regulations/arkansas/220-00-13-Ark-Code-R-SS-001",
+		process: "Provider-based opt-out",
 		effectiveDate: "Ongoing",
 		contacts: [
 			{
-				name: "Arkansas Department of Health",
+				name: "SHARE Arkansas",
 				phone: "501-661-2000",
 				email: "info@arkansas.gov",
 				website: "https://www.healthy.arkansas.gov/",

@@ -5,35 +5,31 @@ window.stateData['az'] = {
 	optOutStatus: "opt-out", // "opt-out", "opt-in", "no-option", "unknown"
 	hieOptOut: {
 		available: true,
-		law: "Arizona Health Information Exchange Rules",
-		lawUrl: "https://azhin.org/",
-		process: "Provider-based opt-out (no centralized state form)",
-		effectiveDate: "Ongoing",
+		law: "§ 36-3804 Arizona Revised Statutes",
+		lawUrl: "https://www.azleg.gov/viewdocument/?docName=https://www.azleg.gov/ars/36/03804.htm",
+		process: "Provider-based opt-out",
+		effectiveDate: "August 6, 2025",
 		contacts: [
 			{
-				name: "Arizona Health-e Connection (AzHeC)",
+				name: "Contexture",
 				phone: "602-542-1025",
 				email: "info@azhec.org",
-				website: "https://azhec.org/",
+				website: "https://contexture.org/opt-in-opt-out-az/",
 				type: "State HIE Operator",
 				notes: "Contact for HIE participation and opt-out guidance"
 			}
 		],
 		steps: [
-			"Contact your provider's Privacy Officer (not front desk staff)",
-			"State specifically that you want to opt out of Health Information Exchange sharing",
-			"Request HIE opt-out form for your specific network (Epic Care Everywhere, CareQuality, etc.)",
-			"Complete form and verify identity (typically requires provider signature or notarization)",
-			"Submit form as instructed (usually mail or fax)",
+			"Download the opt-out form from contexture's website (linked above",
+			"Bring the completed form to your healthcare provider",
+			"State specifically that you want to opt out of Health Information Exchange sharing, and provide the form",
+			"OPTIONAL: Also request to opt-out of any provider specific HIE networks",
 			"Request confirmation that your opt-out request has been processed",
 			"Retain a copy of the form and proof of submission for your records"
 		],
-		template: "I request to exercise my right to opt out of participation in Arizona's Health Information Exchange networks. I understand that this will prevent my health data from being shared across participating networks, and I request that your office provide the necessary form and instructions to complete this request.",
-		majorProviders: [
-			"banner-health",
-			"dignity-health-arizona",
-			"mayo-clinic-arizona",
-			"phoenix-childrens-hospital"
+		template: "",
+		majorProviders: [ //leave blank for now - Major healthcare providers in the state that are likely to participate in HIEs
+			"None currently. will add soon"
 		],
 		additionalInfo: {
 			emergencyAccess: "Opting out means your information will not be shared through HIE networks, even in emergencies. Consider keeping a personal health summary card.",
