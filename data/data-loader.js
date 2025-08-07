@@ -43,57 +43,60 @@ class HIEDataLoader {
 	}
 
 	async loadStateData() {
+		// Load from the new user-focused state data files
 		const stateFiles = [
-			'alabama.js',
-			'alaska.js',
-			'arizona.js',
-			'arkansas.js',
-			'california.js',
-			'colorado.js',
-			'connecticut.js',
-			'delaware.js',
-			'florida.js',
-			'georgia.js',
-			'hawaii.js',
-			'idaho.js',
-			'illinois.js',
-			'indiana.js',
-			'iowa.js',
-			'kansas.js',
-			'kentucky.js',
-			'louisiana.js',
-			'maine.js',
-			'maryland.js',
-			'massachusetts.js',
-			'michigan.js',
-			'minnesota.js',
-			'mississippi.js',
-			'missouri.js',
-			'montana.js',
-			'nebraska.js',
-			'nevada.js',
-			'new-hampshire.js',
-			'new-jersey.js',
-			'new-mexico.js',
-			'new-york.js',
-			'north-carolina.js',
-			'north-dakota.js',
-			'ohio.js',
-			'oklahoma.js',
-			'oregon.js',
-			'pennsylvania.js',
-			'rhode-island.js',
-			'south-carolina.js',
-			'south-dakota.js',
-			'tennessee.js',
-			'texas.js',
-			'utah.js',
-			'vermont.js',
-			'virginia.js',
-			'washington.js',
-			'west-virginia.js',
-			'wisconsin.js',
-			'wyoming.js'
+			'al.js',  // alabama
+			'ak.js',  // alaska
+			'az.js',  // arizona
+			'ar.js',  // arkansas
+			'ca.js',  // california
+			'co.js',  // colorado
+			'ct.js',  // connecticut
+			'dc.js',  // district of columbia
+			'de.js',  // delaware
+			'fl.js',  // florida
+			'ga.js',  // georgia
+			'hi.js',  // hawaii
+			'id.js',  // idaho
+			'il.js',  // illinois
+			'in.js',  // indiana
+			'ia.js',  // iowa
+			'io.js',  // indian ocean (if this exists)
+			'ks.js',  // kansas
+			'ky.js',  // kentucky
+			'la.js',  // louisiana
+			'me.js',  // maine
+			'md.js',  // maryland
+			'ma.js',  // massachusetts
+			'mi.js',  // michigan
+			'mn.js',  // minnesota
+			'ms.js',  // mississippi
+			'mo.js',  // missouri
+			'mt.js',  // montana
+			'ne.js',  // nebraska
+			'nv.js',  // nevada
+			'nh.js',  // new-hampshire
+			'nj.js',  // new-jersey
+			'nm.js',  // new-mexico
+			'ny.js',  // new-york
+			'nc.js',  // north-carolina
+			'nd.js',  // north-dakota
+			'oh.js',  // ohio
+			'ok.js',  // oklahoma
+			'or.js',  // oregon
+			'pa.js',  // pennsylvania
+			'ri.js',  // rhode-island
+			'sc.js',  // south-carolina
+			'sd.js',  // south-dakota
+			'tn.js',  // tennessee
+			'tx.js',  // texas
+			'ut.js',  // utah
+			'vt.js',  // vermont
+			'va.js',  // virginia
+			'wa.js',  // washington
+			'wv.js',  // west-virginia
+			'wi.js',  // wisconsin
+			'wy.js'   // wyoming
 		];
 
 		const promises = stateFiles.map(file => this.loadScript(`./data/states/${file}`));

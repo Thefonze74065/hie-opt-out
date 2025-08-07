@@ -8,27 +8,31 @@ This website provides state-specific guidance and contact information for opting
 
 ## Features
 
-- **Interactive State Map**: Click on any state to see HIE opt-out information
-- **State-Specific Guidance**: Detailed opt-out procedures for each state
+- **Interactive State Map**: Click on any state to see HIE opt-out information with color-coded status
+- **Comprehensive State Coverage**: All 50 states + DC with detailed HIE information
+- **Real Contact Information**: Phone numbers, emails, and opt-out forms for actual HIE organizations
 - **Provider Database**: Searchable database of major healthcare networks
 - **Federal HIE Information**: Guidance for Veterans Affairs and Joint HIE opt-out processes
 - **Insurance & Prescription Privacy**: Information about pharmacy and insurance data sharing
-- **Step-by-Step Instructions**: Clear, actionable guidance
+- **Step-by-Step Instructions**: Clear, actionable guidance for opt-out processes
+- **Color-Coded Privacy Indicators**: Blue for opt-in (privacy-friendly), red for opt-out (concerning)
 - **Mobile-Responsive Design**: Works on all devices
 - **Accessibility-First**: Built with WCAG 2.1 AA compliance in mind
 
 ## What You'll Find
 
 ### State Information
-- Illinois (Northwestern Medicine, UI Health, etc.)
-- North Carolina (Duke Health, Atrium Health, etc.)
-- More states coming soon
+- **All 50 States + DC**: Complete coverage with verified contact information
+- **Verified HIE Details**: Manually researched and updated HIE organizations
+- **Opt-Out vs Opt-In Models**: Clear identification of state consent models
+- **Contact Information**: Direct phone numbers, emails, and opt-out forms
+- **Step-by-Step Processes**: Detailed instructions for each state's procedure
 
 ### Provider Networks
 - Northwestern Medicine
 - University of Illinois Health
 - Duke Health
-- Atrium Health
+- HCA Healthcare
 - And more...
 
 ### Federal Programs
@@ -75,16 +79,24 @@ This website provides state-specific guidance and contact information for opting
 │   │   ├── main.js        # Homepage functionality
 │   │   └── [page].js      # Page-specific functionality
 │   └── images/            # Image assets
-│       ├── us.svg     # Interactive US map
-│       └── us.svg         # Backup US map
+│       └── us.svg         # Interactive US map
 ├── data/                  # Data files and loader
 │   ├── data-loader.js     # Central data loading utility
 │   ├── README.md          # Data structure documentation
-│   ├── states/            # State-specific data files
-│   │   ├── illinois.js
-│   │   └── north-carolina.js
+│   ├── states-csv-data/   # ONC dataset and processing scripts
+│   │   ├── csv-splitter.py
+│   │   ├── user-focused-converter.py
+│   │   ├── state-health-it-privacy-consent-law-policies.csv
+│   │   └── user_focused_states/  # Now empty (files moved to states/)
+│   ├── states/            # All state data files (all 50 + DC)
+│   │   ├── alabama.js
+│   │   ├── alaska.js
+│   │   ├── arizona.js
+│   │   ├── ... (all states)
+│   │   └── wyoming.js
 │   └── providers/         # Provider-specific data files
 │       ├── duke-health.js
+│       ├── hca-healthcare.js
 │       └── northwestern-medicine.js
 └── docs/                  # Documentation
     ├── DATA_TEMPLATES.md  # Data structure templates
@@ -92,12 +104,13 @@ This website provides state-specific guidance and contact information for opting
 ```
 
 ### Data Architecture
-The website uses a modular data structure where each state and major healthcare provider has its own JavaScript file. This makes it easy to:
+The website uses a comprehensive data structure based on the ONC (Office of the National Coordinator) dataset with manual enhancements:
 
-- Add new states and providers without touching core code
-- Maintain detailed, accurate information for each entity
-- Enable collaborative contributions
-- Scale to all 50 states and hundreds of providers
+- **ONC Foundation**: All state data starts with official ONC Health IT Privacy/Consent policies
+- **User-Focused Structure**: Data transformed into actionable opt-out guidance
+- **Manual Verification**: Contact information and processes verified through direct research
+- **Color-Coded Status**: Visual indicators for opt-in (blue/privacy-friendly) vs opt-out (red/concerning)
+- **Comprehensive Coverage**: All 50 states plus Washington D.C.
 
 ## Getting Started
 
@@ -126,28 +139,44 @@ See `docs/DATA_TEMPLATES.md` for detailed data structure documentation.
 
 ### Adding a New State
 
-Create a new file in `data/states/state-name.js`:
+All states are already included! The data comes from the ONC dataset and has been processed into user-focused files. To update a state:
 
+1. Navigate to `data/states-csv-data/user_focused_states/`
+2. Edit the appropriate state file (e.g., `california.js`)
+3. Update contact information, opt-out steps, or other details
+4. Test your changes locally
+
+Current state data structure:
 ```javascript
 window.stateData = window.stateData || {};
-window.stateData['state-name'] = {
+window.stateData['state-code'] = {
     name: 'State Name',
-    hieOptOut: {
-        available: true,
-        process: 'Description of opt-out process',
-        links: [
-            {
-                text: 'Link description',
-                url: 'https://example.com',
-                type: 'form|information|contact'
-            }
-        ],
-        additionalInfo: 'Any additional notes'
-    }
+    status: 'active|inactive|no-hie|unknown',
+    hie: {
+        name: 'HIE Organization Name',
+        type: 'opt-in|opt-out|no-policy',
+        isActive: true/false,
+        contact: {
+            phone: 'Phone number',
+            email: 'Email address',
+            website: 'Website URL',
+            optOutFormUrl: 'Direct form link'
+        },
+        optOut: {
+            available: true/false,
+            process: 'Description of process',
+            steps: ['Step 1', 'Step 2', ...],
+            emergencyAccess: 'Emergency access info',
+            exceptions: 'Important notes'
+        }
+    },
+    mentalHealth: {
+        extraProtections: true/false,
+        details: 'Mental health protection details'
+    },
+    lastUpdated: 'YYYY-MM-DD'
 };
 ```
-
-Then add the filename to the `stateFiles` array in `data/data-loader.js`.
 
 ### Adding a New Provider
 
@@ -196,14 +225,20 @@ For questions or suggestions about the website, please create an issue on GitHub
 ## Roadmap
 
 - [x] Interactive state map with SVG
-- [x] Modular data structure
+- [x] All 50 states + DC coverage
+- [x] ONC dataset integration and processing
+- [x] User-focused data structure
+- [x] Color-coded privacy indicators (opt-in vs opt-out)
+- [x] DC button for Washington D.C.
 - [x] Federal program guidance
 - [x] Insurance and prescription privacy information
-- [ ] Add all 50 states
-- [ ] Expand provider database
-- [ ] Create downloadable templates
+- [x] Manual verification and contact info for key states
+- [ ] Complete manual verification for all remaining states
+- [ ] Expand provider database to include all major health systems
+- [ ] Create downloadable opt-out templates and forms
 - [ ] Add multi-language support
 - [ ] Mobile app version
+- [ ] Automated data freshness checking
 
 ---
 

@@ -28,7 +28,7 @@
             <div class="container">
                 <div class="interactive-map-container">
                     <h2 class="section-title">Click Your State on the Map</h2>
-                    <div class="us-map-wrapper">
+                    <div class="us-map-wrapper" style="position: relative;">
                         <object data="assets/images/us.svg" type="image/svg+xml" id="us-map-object" class="us-map">
                             <!-- Fallback content if SVG doesn't load -->
                             <p>Interactive map not available</p>
@@ -43,9 +43,34 @@
                                 <span>Needs Research / Verification</span>
                             </div>
                         </div>
+                        
+                        <!-- DC Button - positioned in bottom right corner -->
+                        <div class="dc-button-container" style="
+                            position: absolute; 
+                            bottom: 10px; 
+                            right: 10px; 
+                            z-index: 10;
+                        ">
+                            <button id="dc-button" class="dc-button" style="
+                                background: #3b82f6; 
+                                color: white; 
+                                border: none; 
+                                padding: 0.5rem 1rem; 
+                                border-radius: 0.375rem; 
+                                font-weight: 500; 
+                                cursor: pointer;
+                                font-size: 0.875rem;
+                                transition: all 0.2s ease;
+                                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                            " 
+                            onmouseover="this.style.background='#2563eb'; this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 8px rgba(0,0,0,0.15)'"
+                            onmouseout="this.style.background='#3b82f6'; this.style.transform='translateY(0px)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.1)'">
+                                📍 D.C.
+                            </button>
+                        </div>
                     </div>
-                    <p class="map-instruction">Click on any state to see HIE opt-out information, or use the dropdown below.</p>
-                </div>
+                    <p class="map-instruction">Click on any state to see HIE opt-out information, or use the dropdown below. <em style="color: #6b7280;">District of Columbia button is in the bottom right corner of the map.</em></p>
+                    
 
                 <div class="state-selector">
                     <label for="state-dropdown">Or Select from Dropdown:</label>

@@ -48,11 +48,19 @@ class StatesPage {
 		this.stateDropdown.addEventListener('change', (event) => {
 			this.handleStateSelection(event);
 		});
+
+		// Add DC button event listener
+		const dcButton = document.getElementById('dc-button');
+		if (dcButton) {
+			dcButton.addEventListener('click', () => {
+				this.handleDCSelection();
+			});
+		}
 	}
 
-	getStateColor(optOutStatus, stateCode) {
+	getStateColor(status, stateCode) {
 		// Development mode: Show reviewed vs unreviewed states
-		const reviewedStates = ['il', 'nc', 'ma', 'al', 'ak', 'az', 'wy', 'wi']; // States that have been researched and updated
+		const reviewedStates = ['il', 'nc', 'ma', 'al', 'ak', 'az', 'wy', 'wi', 'ar']; // States that have been researched and updated
 
 		if (reviewedStates.includes(stateCode)) {
 			return '#10b981'; // Green for reviewed states
@@ -61,9 +69,9 @@ class StatesPage {
 		}
 	}
 
-	getStateHoverColor(optOutStatus, stateCode) {
+	getStateHoverColor(status, stateCode) {
 		// Development mode: Show reviewed vs unreviewed states
-		const reviewedStates = ['il', 'nc', 'ma', 'al', 'ak', 'az', 'wy', 'wi']; // States that have been researched and updated
+		const reviewedStates = ['il', 'nc', 'ma', 'al', 'ak', 'az', 'wy', 'wi', 'ar']; // States that have been researched and updated
 
 		if (reviewedStates.includes(stateCode)) {
 			return '#059669'; // Darker green for reviewed states
@@ -93,11 +101,11 @@ class StatesPage {
 
 				// Get state data to determine color
 				const state = stateData[stateCode];
-				const optOutStatus = state ? state.optOutStatus : 'unknown';
+				const status = state ? state.status : 'unknown';
 
 				// Set initial styling based on review status
-				const stateColor = this.getStateColor(optOutStatus, stateCode);
-				const hoverColor = this.getStateHoverColor(optOutStatus, stateCode);
+				const stateColor = this.getStateColor(status, stateCode);
+				const hoverColor = this.getStateHoverColor(status, stateCode);
 
 				path.style.fill = stateColor;
 				path.style.cursor = state ? 'pointer' : 'default';
@@ -217,6 +225,36 @@ class StatesPage {
 		}
 	}
 
+	handleDCSelection() {
+		console.log('DC button clicked');
+		
+		if (window.hieDataLoader.isLoaded()) {
+			const dcData = window.hieDataLoader.getStateData('dc');
+			console.log('DC data found:', !!dcData);
+
+			if (dcData) {
+				// Update dropdown to show DC is selected
+				this.stateDropdown.value = 'dc';
+				
+				this.displayStateInfo(dcData);
+				this.stateInfo.style.display = 'block';
+
+				// Scroll to the populated state information
+				setTimeout(() => {
+					const stateInfoRect = this.stateInfo.getBoundingClientRect();
+					const offsetPosition = window.pageYOffset + stateInfoRect.top - 75; // 75px padding from top
+
+					window.scrollTo({
+						top: offsetPosition,
+						behavior: 'smooth'
+					});
+				}, 100);
+			} else {
+				console.log('No DC data found');
+			}
+		}
+	}
+
 	// Helper method to get provider name from provider ID
 	getProviderName(providerId) {
 		// Get provider data from the data loader
@@ -235,76 +273,90 @@ class StatesPage {
 	displayStateInfo(state) {
 		console.log('Displaying state info for:', state);
 
-		const hieInfo = state.hieOptOut;
-
-		const processColorClass = hieInfo.process.startsWith('Centralized') ? 'centralized' : 'provider-based';
-		const processBgColor = hieInfo.process.startsWith('Centralized') ? '#eff6ff' : '#fef2f2';
-		const processBorderColor = hieInfo.process.startsWith('Centralized') ? '#3b82f6' : '#ef4444';
-		const processTextColor = hieInfo.process.startsWith('Centralized') ? '#1d4ed8' : '#dc2626';
-		const processHeadingColor = hieInfo.process.startsWith('Centralized') ? '#1e40af' : '#b91c1c';
+		// Use the new data structure: state.hie instead of state.hieOptOut
+		const hieInfo = state.hie;
+		
+		// Determine if opt-out is available
+		const optOutAvailable = hieInfo.optOut && hieInfo.optOut.available;
+		
+		// Get process type from the new structure
+		const processType = hieInfo.type || 'unknown';
+		const isOptOut = processType === 'opt-out';
+		
+		// Color scheme based on opt-in/opt-out (independent of provider-based/centralized)
+		const processBgColor = isOptOut ? '#fef2f2' : '#eff6ff';
+		const processBorderColor = isOptOut ? '#ef4444' : '#3b82f6';
+		const processTextColor = isOptOut ? '#dc2626' : '#1d4ed8';
+		const processHeadingColor = isOptOut ? '#b91c1c' : '#1e40af';
 
 		this.stateInfo.innerHTML = `
             <h3>HIE Opt-Out Information for ${state.name}</h3>
             
-            <div class="process-section" style="background: ${processBgColor}; border: 1px solid ${processBorderColor}; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
-                <h4 style="margin: 0 0 0.5rem 0; color: ${processHeadingColor};">Process Type</h4>
-                <p style="margin: 0; font-weight: 500; color: ${processTextColor};">${hieInfo.process}</p>
+            <div class="status-section" style="background: ${processBgColor}; border: 1px solid ${processBorderColor}; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+                <h4 style="margin: 0 0 0.5rem 0; color: ${processHeadingColor};">HIE Status</h4>
+                <p style="margin: 0 0 0.5rem 0; font-weight: 500; color: ${processTextColor};">
+                    ${hieInfo.name} - ${processType.toUpperCase()}
+                </p>
+                <p style="margin: 0; color: ${processTextColor};">
+                    ${optOutAvailable ? 'Opt-out available' : 'Opt-out not available'}
+                </p>
             </div>
             
-            <div class="contact-section">
-                <h4>Contact Information</h4>
-                ${hieInfo.contacts.map(contact => `
+            ${optOutAvailable ? `
+                <div class="process-section" style="background: #f9fafb; border: 1px solid #d1d5db; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+                    <h4 style="margin: 0 0 0.5rem 0; color: #374151;">Process</h4>
+                    <p style="margin: 0; color: #374151;">${hieInfo.optOut.process}</p>
+                </div>
+                
+                <div class="contact-section" style="margin-bottom: 1.5rem;">
+                    <h4>Contact Information</h4>
                     <div class="contact-item" style="margin-bottom: 1rem; padding: 1rem; background: #f9fafb; border-radius: 0.5rem;">
-                        <p><strong>${contact.name}</strong></p>
-                        ${contact.address ? `<p><strong>Address:</strong> ${contact.address}</p>` : ''}
-                        <p><strong>Phone:</strong> <a href="tel:${contact.phone}">${contact.phone}</a></p>
-                        <p><strong>Email:</strong> <a href="mailto:${contact.email}">${contact.email}</a></p>
-                        ${contact.website ? `<p><strong>Website:</strong> <a href="${contact.website}" target="_blank">${contact.website}</a></p>` : ''}
-                        ${contact.notes ? `<p><em>${contact.notes}</em></p>` : ''}
-                    </div>
-                `).join('')}
-            </div>
-
-            ${hieInfo.template ? `
-                <div class="template-section">
-                    <h4>What to Say</h4>
-                    <div class="template-text" style="background: #f0f9ff; border: 1px solid #0ea5e9; padding: 1.5rem; border-radius: 0.5rem; margin: 1rem 0;">
-                        <p>"${hieInfo.template}"</p>
+                        <p><strong>${hieInfo.name}</strong></p>
+                        ${hieInfo.contact.phone ? `<p><strong>Phone:</strong> <a href="tel:${hieInfo.contact.phone}">${hieInfo.contact.phone}</a></p>` : ''}
+                        ${hieInfo.contact.email ? `<p><strong>Email:</strong> <a href="mailto:${hieInfo.contact.email}">${hieInfo.contact.email}</a></p>` : ''}
+                        ${hieInfo.contact.website ? `<p><strong>Website:</strong> <a href="${hieInfo.contact.website}" target="_blank">${hieInfo.contact.website}</a></p>` : ''}
+                        ${hieInfo.contact.optOutFormUrl ? `<p><strong>Opt-Out Form:</strong> <a href="${hieInfo.contact.optOutFormUrl}" target="_blank">Download Form</a></p>` : ''}
                     </div>
                 </div>
-            ` : ''}
 
-            <div class="steps-section">
-                <h4>Step-by-Step Process</h4>
-                <ol style="padding-left: 1.5rem;">
-                    ${hieInfo.steps.map(step => `<li style="margin-bottom: 0.5rem;">${step}</li>`).join('')}
-                </ol>
-            </div>
+                ${hieInfo.optOut.steps && hieInfo.optOut.steps.length > 0 ? `
+                    <div class="steps-section" style="margin-bottom: 1.5rem;">
+                        <h4>Step-by-Step Process</h4>
+                        <ol style="padding-left: 1.5rem;">
+                            ${hieInfo.optOut.steps.map(step => `<li style="margin-bottom: 0.5rem;">${step}</li>`).join('')}
+                        </ol>
+                    </div>
+                ` : ''}
 
-            <div class="providers-section">
-                <h4>Major Providers in ${state.name}</h4>
-                <ul class="provider-list" style="columns: 2; column-gap: 2rem;">
-                    ${hieInfo.majorProviders.map(providerId => {
-			const providerName = this.getProviderName(providerId);
-			const providerUrl = `providers.html#${providerId}`;
-			return `<li style="margin-bottom: 0.5rem;"><a href="${providerUrl}" style="color: #2563eb; text-decoration: none; font-weight: 500;">${providerName}</a></li>`;
-		}).join('')}
-                </ul>
-            </div>
+                ${hieInfo.optOut.emergencyAccess ? `
+                    <div class="emergency-section" style="background: #fef3c7; border: 1px solid #f59e0b; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
+                        <h4 style="margin: 0 0 0.5rem 0; color: #92400e;">Emergency Access</h4>
+                        <p style="margin: 0; color: #92400e;">${hieInfo.optOut.emergencyAccess}</p>
+                    </div>
+                ` : ''}
 
-            ${hieInfo.additionalInfo ? `
-                <div class="additional-info">
-                    <h4>Additional Information</h4>
-                    ${hieInfo.additionalInfo.emergencyAccess ? `<p><strong>Emergency Access:</strong> ${hieInfo.additionalInfo.emergencyAccess}</p>` : ''}
-                    ${hieInfo.additionalInfo.coverageArea ? `<p><strong>Coverage:</strong> ${hieInfo.additionalInfo.coverageArea}</p>` : ''}
-                    ${hieInfo.additionalInfo.exceptions ? `<p><strong>Exceptions:</strong> ${hieInfo.additionalInfo.exceptions}</p>` : ''}
+                ${hieInfo.optOut.exceptions ? `
+                    <div class="exceptions-section" style="background: #fef2f2; border: 1px solid #ef4444; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
+                        <h4 style="margin: 0 0 0.5rem 0; color: #dc2626;">Important Notes</h4>
+                        <p style="margin: 0; color: #dc2626;">${hieInfo.optOut.exceptions}</p>
+                    </div>
+                ` : ''}
+            ` : `
+                <div class="no-optout-section" style="background: #fef2f2; border: 1px solid #ef4444; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+                    <h4 style="margin: 0 0 0.5rem 0; color: #dc2626;">Opt-Out Not Available</h4>
+                    <p style="margin: 0; color: #dc2626;">${hieInfo.optOut ? hieInfo.optOut.process : 'No opt-out process is available for this state HIE.'}</p>
+                </div>
+            `}
+            
+            ${state.mentalHealth && state.mentalHealth.extraProtections ? `
+                <div class="mental-health-section" style="background: #f0f9ff; border: 1px solid #0ea5e9; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;">
+                    <h4 style="margin: 0 0 0.5rem 0; color: #0c4a6e;">Mental Health Protections</h4>
+                    <p style="margin: 0; color: #0c4a6e;">${state.mentalHealth.details}</p>
                 </div>
             ` : ''}
-
-            <div class="next-steps" style="background: #fef3c7; border: 1px solid #f59e0b; padding: 1.5rem; border-radius: 0.5rem; margin-top: 2rem;">
-                <h4 style="margin: 0 0 1rem 0; color: #92400e;">Next Steps</h4>
-                <p style="margin: 0 0 1rem 0; color: #92400e;">Now that you know your state's process, find your specific healthcare provider's contact information:</p>
-                <a href="providers.html" class="btn btn-primary">Find Your Provider</a>
+            
+            <div class="last-updated" style="font-size: 0.875rem; color: #6b7280; margin-top: 1rem;">
+                <p>Last updated: ${state.lastUpdated || 'Unknown'}</p>
             </div>
         `;
 	}
